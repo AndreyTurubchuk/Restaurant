@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.topjava.restaurant.model.Dish;
+import ru.topjava.restaurant.service.DishService;
 
 import java.util.List;
 
@@ -14,14 +15,16 @@ import java.util.List;
 //@RequestMapping(value = "/")
 public class AppController {
 
+    @Autowired
+    private DishService dishService;
+
     @RequestMapping({"/"})
-    public String dishList() {
+    public List<Dish> dishList() {
         Dish dish = new Dish("картошка", 3.0);
-        return dish.toString();
-       // return dish;
-        //List<Person> personList = personService.getAll();
-        //model.addAttribute("personList", personList);
-        //return "personList";
+        dishService.saveDish(dish);
+        Dish dish2 = new Dish("картошка2", 32.0);
+        dishService.saveDish(dish2);
+        return dishService.getAll();
     }
 
   /*  @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
