@@ -8,7 +8,7 @@ public class Dish {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long dishId;
 
     private String name;
     private Double price;
@@ -21,12 +21,12 @@ public class Dish {
         this.price = price;
     }
 
-    public long getId() {
-        return id;
+    public long getDishId() {
+        return dishId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setDishId(long dishId) {
+        this.dishId = dishId;
     }
 
     public String getName() {
@@ -48,7 +48,7 @@ public class Dish {
     @Override
     public String toString() {
         return "Dish{" +
-                "id=" + id +
+                "dishId=" + dishId +
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 '}';
