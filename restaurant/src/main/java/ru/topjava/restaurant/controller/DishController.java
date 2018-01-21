@@ -13,8 +13,8 @@ import ru.topjava.restaurant.service.DishService;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "restaurant/api/v1")
-public class AppController {
+@RequestMapping(value = "restaurant/dish/api/v1")
+public class DishController {
 
     @Autowired
     private DishService dishService;
