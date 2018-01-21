@@ -2,6 +2,8 @@ package ru.topjava.restaurant.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,72 +12,48 @@ import ru.topjava.restaurant.service.DishService;
 
 import java.util.List;
 
-
 @RestController
-//@RequestMapping(value = "/")
+@RequestMapping(value = "restaurant/api/v1")
 public class AppController {
 
     @Autowired
     private DishService dishService;
 
-    @RequestMapping({"/"})
+
+    @GetMapping(value = "/dishes")
+    public List<Dish> dishes() {
+        return dishService.getAll();
+    } // лист
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE) //создание
+    public void create(@RequestBody Dish dish) {
+        dishService.create(dish);
+    }
+
+    @GetMapping("/{id}")
+    public Dish get(@PathVariable("id") long id) {
+        return dishService.getById(id);
+    } // поиск по id
+
+    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE) //обновление
+    public void update(@PathVariable("id") long id, @RequestBody Dish dish) {
+        dishService.update(dish, id);
+    }
+
+    @GetMapping(value = "/")
     public List<Dish> dishList() {
         Dish dish = new Dish("картошка", 3.0);
-        dishService.saveDish(dish);
+        dishService.create(dish);
         Dish dish2 = new Dish("картошка2", 32.0);
-        dishService.saveDish(dish2);
+        dishService.create(dish2);
         return dishService.getAll();
     }
 
-  /*  @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String delete(@PathVariable long id) {
-        personService.delete(id);
-        return "redirect:/person/list";
+    @DeleteMapping("/{id}") // удаление
+    public void delete(@PathVariable("id") long id) {
+        dishService.delete(id);
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
-    public String add() {
-        return "personAdd";
-    }
-
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(Person person) {
-       personService.savePerson(person);
-        return "redirect:/person/list";
- }
-
-    @ExceptionHandler(MailException.class)
-    public String err(Model model, Exception ex){
-        model.addAttribute("texterror", ex.getMessage());
-        return "error";
-    }
-
-    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
-    public String view(@PathVariable Long id, Model model) {
-        Person person = personService.getOne(id);
-        List<Letter> letterList = letterService.findByTo(person.getEmailAddress());
-        model.addAttribute("personLetterList", letterList);
-        model.addAttribute("personFullName", person.getFirstName() + " " + person.getLastName());
-        return "personLetterList";
-    }
-
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public String edit(@PathVariable Long id, Model model) {
-        Person person = personService.getOne(id);
-        model.addAttribute("person", person);
-        return "personEdit";
-    }
-
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-    public String edit(@PathVariable Long id, Person personDetails) {
-        personService.editPerson(id, personDetails);
-        return "redirect:/person/list";
-    }
-
-    @RequestMapping(value = "/")
-    public String main() {
-        return "personList";
-    }*/
 }
 
 
