@@ -15,11 +15,16 @@ public class RestaurantMenu {
     @JoinColumn(name = "dish_id")
     private Dish dish;
 
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+
     public RestaurantMenu() {
     }
 
-    public RestaurantMenu(Dish dish) {
+    public RestaurantMenu(Dish dish, Restaurant restaurant) {
         this.dish = dish;
+        this.restaurant = restaurant;
     }
 
     public long getId() {
@@ -36,5 +41,13 @@ public class RestaurantMenu {
 
     public void setDish(Dish dish) {
         this.dish = dish;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }
