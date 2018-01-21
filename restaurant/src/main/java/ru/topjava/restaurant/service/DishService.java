@@ -6,5 +6,13 @@ import java.util.List;
 
 public interface DishService {
     List<Dish> getAll();
-    void saveDish(Dish dish);
+
+    void create(Dish dish);
+
+    void update(Dish dish, long dishId);
+
+    void delete(long dishId);
+
+    Dish getById(long id);
+
 }
