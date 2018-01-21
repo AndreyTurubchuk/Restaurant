@@ -9,6 +9,5 @@ import java.util.List;
 
 @Repository
 public interface DishRepository extends JpaRepository<Dish, Long> {
-    //List<Dish> findByToOrderByTo(String to);
     Dish findByDishId(Long id);
 }
