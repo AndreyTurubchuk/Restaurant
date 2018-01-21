@@ -20,7 +20,28 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public void saveDish(Dish dish) {
+    public void create(Dish dish) {
         dishRepository.save(dish);
     }
+
+    @Override
+    public void update(Dish dishDetails, long dishId) {
+        Dish dish = dishRepository.getOne(dishId);
+        dish.setName(dishDetails.getName());
+        dish.setPrice(dishDetails.getPrice());
+        dishRepository.save(dish);
+    }
+
+    @Override
+    public void delete(long dishId) {
+        dishRepository.delete(dishId);
+    }
+
+    @Override
+    public Dish getById(long id) {
+        return dishRepository.findByDishId(id);
+    }
+
 }
+
+
