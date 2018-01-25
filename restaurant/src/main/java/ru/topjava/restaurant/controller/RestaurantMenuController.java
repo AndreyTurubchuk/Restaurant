@@ -32,7 +32,7 @@ public class RestaurantMenuController {
         dishService.create(dish);
         Dish dish2 = new Dish("картошка32", 32.0);
         dishService.create(dish2);
-        Restaurant restaurant = new Restaurant(0L);
+        Restaurant restaurant = new Restaurant();
         restaurantMenuService.create(dish, restaurant);
         return restaurantMenuService.getAll();
     } // лист
