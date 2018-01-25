@@ -30,4 +30,7 @@ public class RestaurantController {
     public Restaurant get(@PathVariable("id") long id) {
         return restaurantService.getById(id);
     } // поиск по id
+
+
+
 }
