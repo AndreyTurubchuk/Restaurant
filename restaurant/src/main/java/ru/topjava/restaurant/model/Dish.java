@@ -8,7 +8,7 @@ public class Dish {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long dishId;
+    private Long dishId;
 
     private String name;
     private Double price;
