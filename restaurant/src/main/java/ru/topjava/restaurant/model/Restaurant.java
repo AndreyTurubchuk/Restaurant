@@ -1,4 +1,7 @@
 package ru.topjava.restaurant.model;
+/*
+
+import ru.topjava.restaurant.restaurantMenu.RestaurantMenu;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -60,3 +63,4 @@ public class Restaurant {
         this.restaurantMenus = restaurantMenus;
     }
 }
+*/
