@@ -1,10 +1,10 @@
 package ru.topjava.restaurant.service;
 
-import ru.topjava.restaurant.model.Restaurant;
+//import ru.topjava.restaurant.model.Restaurant;
 
 import java.util.List;
 
-public interface RestaurantService {
+/*public interface RestaurantService {
 
     List<Restaurant> getAll();
 
@@ -15,4 +15,4 @@ public interface RestaurantService {
     void delete(long restaurantId);
 
     Restaurant getById(long id);
-}
+}*/

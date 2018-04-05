@@ -1,11 +1,12 @@
 package ru.topjava.restaurant.controller;
+/*
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ru.topjava.restaurant.model.Dish;
 import ru.topjava.restaurant.model.Restaurant;
-import ru.topjava.restaurant.model.RestaurantMenu;
+import ru.topjava.restaurant.restaurantMenu.RestaurantMenu;
 import ru.topjava.restaurant.service.DishService;
 import ru.topjava.restaurant.service.RestaurantMenuService;
 
@@ -43,3 +44,4 @@ public class RestaurantMenuController {
     }
 
 }
+*/

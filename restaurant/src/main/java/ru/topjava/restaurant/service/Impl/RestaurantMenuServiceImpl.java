@@ -3,15 +3,15 @@ package ru.topjava.restaurant.service.Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.topjava.restaurant.model.Dish;
-import ru.topjava.restaurant.model.Restaurant;
-import ru.topjava.restaurant.model.RestaurantMenu;
+//import ru.topjava.restaurant.model.Restaurant;
+import ru.topjava.restaurant.restaurantMenu.RestaurantMenu;
 import ru.topjava.restaurant.repository.DishRepository;
-import ru.topjava.restaurant.repository.RestaurantMenuRepository;
+/*import ru.topjava.restaurant.repository.RestaurantMenuRepository;
 import ru.topjava.restaurant.repository.RestaurantRepository;
-import ru.topjava.restaurant.service.DishService;
-import ru.topjava.restaurant.service.RestaurantMenuService;
+import ru.topjava.restaurant.service.RestaurantMenuService;*/
 
 import java.util.List;
+/*
 
 @Service
 public class RestaurantMenuServiceImpl implements RestaurantMenuService {
@@ -46,13 +46,15 @@ public class RestaurantMenuServiceImpl implements RestaurantMenuService {
         restaurantMenuRepository.save(restaurantMenu);
     }
 
+*/
 /*    @Override
     public void update(Dish dishDetails, long dishId) {
         Dish dish = dishRepository.getOne(dishId);
         dish.setName(dishDetails.getName());
         dish.setPrice(dishDetails.getPrice());
         dishRepository.save(dish);
-    }*/
+    }*//*
+
 
     @Override
     public void delete(long restaurantMenuId) {
@@ -64,3 +66,4 @@ public class RestaurantMenuServiceImpl implements RestaurantMenuService {
         return restaurantMenuRepository.findRestaurantMenuById(id);
     }
 }
+*/

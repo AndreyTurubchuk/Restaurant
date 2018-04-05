@@ -1,13 +1,12 @@
 package ru.topjava.restaurant.service;
 
-import com.sun.org.apache.regexp.internal.RE;
 import ru.topjava.restaurant.model.Dish;
-import ru.topjava.restaurant.model.Restaurant;
-import ru.topjava.restaurant.model.RestaurantMenu;
+//import ru.topjava.restaurant.model.Restaurant;
+import ru.topjava.restaurant.restaurantMenu.RestaurantMenu;
 
 import java.util.List;
 
-public interface RestaurantMenuService {
+/*public interface RestaurantMenuService {
     List<RestaurantMenu> getAll();
 
     //void create(RestaurantMenu restaurantMenu);
@@ -20,4 +19,4 @@ public interface RestaurantMenuService {
 
     RestaurantMenu getById(long id);
 
-}
+}*/
