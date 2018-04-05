@@ -4,12 +4,12 @@ package ru.topjava.restaurant.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import ru.topjava.restaurant.model.Restaurant;
-import ru.topjava.restaurant.service.RestaurantService;
+//import ru.topjava.restaurant.model.Restaurant;
+//import ru.topjava.restaurant.service.RestaurantService;
 
 import java.util.List;
 
-@RestController
+/*@RestController
 @RequestMapping(value = "restaurant/restaurant/api/v1")
 public class RestaurantController {
 
@@ -33,4 +33,4 @@ public class RestaurantController {
 
 
 
-}
+}*/
