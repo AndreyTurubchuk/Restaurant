@@ -8,27 +8,51 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.topjava.restaurant.model.Dish;
+import ru.topjava.restaurant.repository.DishRepository;
 import ru.topjava.restaurant.service.DishService;
 
+import java.util.Date;
 import java.util.List;
 
-@RestController
-@RequestMapping(value = "restaurant/dish/api/v1")
+//@RestController
+@Controller
+//@RequestMapping(value = "restaurant/dish/api/v1")
+@RequestMapping(value = "restaurant")
 public class DishController {
 
     @Autowired
     private DishService dishService;
 
+    @Autowired
+    private DishRepository dishRepository;
 
     @GetMapping(value = "/dishes")
     public List<Dish> dishes() {
         return dishService.getAll();
     } // лист
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE) //создание
+    //@GetMapping(value = "/dish/add") //создание
+    @GetMapping(value = "/dish/add") //создание
+    public String dishAdd(Model model) {
+        model.addAttribute("dish", new Dish());
+        return "dishAddForm";
+        //return "test";
+    }
+
+    @PostMapping("/dish/add")
+    public String dishSubmit(@ModelAttribute Dish dish) {
+        dishRepository.save(dish);
+        //dishService.create(dish);
+        return "redirect:/restaurant/dish/add"; // переход на форму ввода блюд
+
+    }
+
+
+
+/*    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE) //создание
     public void create(@RequestBody Dish dish) {
         dishService.create(dish);
-    }
+    }*/
 
     @GetMapping("/{id}")
     public Dish get(@PathVariable("id") long id) {
