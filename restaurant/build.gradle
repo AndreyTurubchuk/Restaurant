@@ -36,6 +36,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 	/*runtime('com.h2database:h2')*/
 	compile 'org.postgresql:postgresql:9.4.1212'
 	testCompile 'org.postgresql:postgresql:9.4.1212'
