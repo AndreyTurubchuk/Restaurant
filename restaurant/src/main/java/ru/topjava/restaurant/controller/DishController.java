@@ -26,9 +26,14 @@ public class DishController {
     @Autowired
     private DishRepository dishRepository;
 
-    @GetMapping(value = "/dishes")
+/*    @GetMapping(value = "/dishes")
     public List<Dish> dishes() {
         return dishService.getAll();
+    } // лист*/
+
+    @GetMapping(value = "/dishes")
+    public List<Dish> dishes() {
+        return dishRepository.findAll();
     } // лист
 
     //@GetMapping(value = "/dish/add") //создание
