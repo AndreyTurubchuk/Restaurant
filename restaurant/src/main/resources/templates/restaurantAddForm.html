@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Restaurant Add Form</title>
+</head>
+<body>
+      <div class="container">
+            <div class="form-wrapper">
+                <form action="#" id="restaurantAddForm" th:action="@{/restaurant/restaurant/add}" th:object="${restaurant}" method="post" >
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">number restaurant</label>
+                            <div class="col-sm-8">
+                                <input type="text" th:field="*{restaurantId}" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Name</label>
+                            <div class="col-sm-8">
+                                <textarea th:field="*{name}" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-sm-3">Raiting</label>
+                            <div class="col-sm-8">
+                                <input type="text" th:field="*{rating}" class="form-control"/>
+                            </div>
+                        </div>
+
+<!--                        <div class="form-group">
+                            <label class="control-label col-sm-3">Raiting</label>
+                            <div class="col-sm-8">
+                                <textarea th:field="*{rating}" class="form-control"></textarea>
+                            </div>
+                        </div>-->
+
+                        <div class="form-group">
+                            <div class="control-label col-sm-3"></div>
+                            <div class="col-sm-8">
+                                <a href="#" onclick="document.forms['restaurantAddForm'].submit();" class="btn-save pull-left">SAVE</a>
+                                <a th:href="@{/restaurant/restaurant/add}" class="btn-close pull-right">CANCEL</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+      </div>
+
+</body>
+</html>
