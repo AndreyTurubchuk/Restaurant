@@ -1,5 +1,5 @@
 package ru.topjava.restaurant.model;
-/*
+
 
 import ru.topjava.restaurant.restaurantMenu.RestaurantMenu;
 
@@ -13,29 +13,42 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long restaurantId;
+    private long restaurantId;
 
     private String name;
 
     private Long rating;
+    //private String rating;
 
-    @OneToMany(mappedBy = "restaurant")
-    private List<RestaurantMenu> restaurantMenus = new ArrayList<>();
+
+
+/*    @OneToMany(mappedBy = "restaurant")
+    private List<RestaurantMenu> restaurantMenus = new ArrayList<>();*/
+
+/*    public Restaurant(String name, String rating) {
+        this.name = name;
+        this.rating = rating;
+    }*/
 
     public Restaurant(String name) {
         this.rating = 0L;
+
         this.name = name;
     }
 
-    public Restaurant() {
+    /*public Restaurant() {
         this.rating = 0L;
+    }*/
+
+    public Restaurant() {
+        this.rating = 3L;
     }
 
-    public Long getRestaurantId() {
+    public long getRestaurantId() {
         return restaurantId;
     }
 
-    public void setRestaurantId(Long restaurantId) {
+    public void setRestaurantId(long restaurantId) {
         this.restaurantId = restaurantId;
     }
 
@@ -51,16 +64,16 @@ public class Restaurant {
         return rating;
     }
 
-    public void setRating(Long rating) {
+    public void setRating(long rating) {
         this.rating = rating;
     }
 
-    public List<RestaurantMenu> getRestaurantMenus() {
-        return restaurantMenus;
+/*    public String getRating() {
+        return rating;
     }
 
-    public void setRestaurantMenus(List<RestaurantMenu> restaurantMenus) {
-        this.restaurantMenus = restaurantMenus;
-    }
+    public void setRating(String rating) {
+        this.rating = rating;
+    }*/
 }
-*/
+
