@@ -6,10 +6,8 @@
 <body>
       <div class="container">
             <div class="form-wrapper">
-                <!--<form action="#" id="dishAddForm" th:action="@{/restaurant/dish/add}" th:object="${dish}" method="post" >-->
-                    <form action="#" id="dishAddForm" th:action="@{/restaurant/dish/api/v1/dishes}" th:object="${dish}" method="post" >
-
-                    restaurant/dish/api/v1
+                <form action="#" id="dishAddForm" th:action="@{/restaurant/dish/create}" th:object="${dish}" method="post" >
+               <!--     <form action="#" id="dishAddForm" th:action="@{/restaurant/dish/api/v1/dishes}" th:object="${dish}" method="post" >-->
                     <div class="form-body">
                         <div class="form-group">
                             <label class="control-label col-sm-3">number dish</label>
@@ -35,7 +33,7 @@
                             <div class="control-label col-sm-3"></div>
                             <div class="col-sm-8">
                                 <a href="#" onclick="document.forms['dishAddForm'].submit();" class="btn-save pull-left">SAVE</a>
-                                <a th:href="@{/restaurant/dish/add}" class="btn-close pull-right">CANCEL</a>
+                                <a th:href="@{/restaurant/dishes}" class="btn-close pull-right">CANCEL</a>
                             </div>
                         </div>
                     </div>
