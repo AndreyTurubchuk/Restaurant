@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Restaurant All</title>
+</head>
+<body>
+<div class="container">
+    <div class="form-wrapper">
+        <table class="list-table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Raiting</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="restaurant : ${restaurantList}">
+                <td th:text="${restaurant.restaurantId}" th:name="id"></td>
+                <td>
+                    <a th:title="Редактирование"
+                       th:href="@{/restaurant/restaurant/{id}(id=${restaurant.restaurantId})}"
+                       th:text="${restaurant.name}">
+                    </a>
+                </td>
+
+                <td th:text="${restaurant.rating}">
+                </td>
+                <!--                <td class="del-cell">
+                                    <a class="del-btn" th:href="@{/sokol/department/delete/{id}(id=${department.id})}"></a>
+                                </td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
