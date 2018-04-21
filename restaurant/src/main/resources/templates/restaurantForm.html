@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Restaurant Add Form</title>
+    <title>Restaurant Form</title>
 </head>
 <body>
       <div class="container">
             <div class="form-wrapper">
-                <form action="#" id="restaurantAddForm" th:action="@{/restaurant/restaurant/add}" th:object="${restaurant}" method="post" >
+                <form action="#" id="restaurantForm" th:action="@{/restaurant/restaurant/save}" th:object="${restaurant}" method="post" >
                     <div class="form-body">
                         <div class="form-group">
                             <label class="control-label col-sm-3">number restaurant</label>
@@ -37,8 +37,8 @@
                         <div class="form-group">
                             <div class="control-label col-sm-3"></div>
                             <div class="col-sm-8">
-                                <a href="#" onclick="document.forms['restaurantAddForm'].submit();" class="btn-save pull-left">SAVE</a>
-                                <a th:href="@{/restaurant/restaurant/add}" class="btn-close pull-right">CANCEL</a>
+                                <a href="#" onclick="document.forms['restaurantForm'].submit();" class="btn-save pull-left">SAVE</a>
+                                <a th:href="@{/restaurant/restaurants}" class="btn-close pull-right">CANCEL</a>
                             </div>
                         </div>
                     </div>
