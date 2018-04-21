@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.topjava.restaurant.model.Dish;
 import ru.topjava.restaurant.model.Restaurant;
 import ru.topjava.restaurant.repository.RestaurantRepository;
 import ru.topjava.restaurant.restaurantMenu.RestaurantMenu;
@@ -28,19 +29,33 @@ public class RestaurantController {
         return restaurantRepository.findAll();
     } // лист*/
 
-    @GetMapping(value = "/restaurant/add") //создание
-    public String restaurantAdd(Model model) {
-        model.addAttribute("restaurant", new Restaurant());
-        return "restaurantAddForm";
-        //return "test";
+    @GetMapping(value = "/restaurants")
+    public String restaurantList(Model model) {
+        model.addAttribute("restaurantList", restaurantRepository.findAll());
+        return "restaurantAll";
     }
 
-    @PostMapping("/restaurant/add")
-    public String restaurantSubmit(@ModelAttribute Restaurant restaurant) {
-        restaurantRepository.save(restaurant);
-        //dishService.create(dish);
-        return "redirect:/restaurant/restaurant/add"; // переход на форму ввода блюд
+    @GetMapping(value = "/restaurantList")
+    public List<Restaurant> restaurants() {
+        return restaurantRepository.findAll();
+    } // лист
 
+    @GetMapping(value = "/restaurant/create") //создание
+    public String restaurantCreate(Model model) {
+        model.addAttribute("restaurant", new Restaurant());
+        return "restaurantForm";
+    }
+
+    @GetMapping(value = "/restaurant/{id}") //редактирование
+    public String restaurantEdit(Model model, @PathVariable long id) {
+        model.addAttribute("restaurant", restaurantRepository.getOne(id));
+        return "restaurantForm";
+    }
+
+    @PostMapping("restaurant/save") //post для create, update
+    public String restaurantSaveSubmit(@ModelAttribute Restaurant restaurant) {
+        restaurantRepository.save(restaurant);
+        return "redirect:/restaurant/restaurants";
     }
 
 }
