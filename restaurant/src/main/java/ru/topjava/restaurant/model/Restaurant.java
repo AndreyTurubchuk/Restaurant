@@ -41,7 +41,7 @@ public class Restaurant {
     }*/
 
     public Restaurant() {
-        this.rating = 3L;
+        this.rating = 0L;
     }
 
     public long getRestaurantId() {
