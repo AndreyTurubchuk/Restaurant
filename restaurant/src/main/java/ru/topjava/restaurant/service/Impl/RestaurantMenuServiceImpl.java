@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.topjava.restaurant.model.Dish;
 //import ru.topjava.restaurant.model.Restaurant;
-import ru.topjava.restaurant.restaurantMenu.RestaurantMenu;
 import ru.topjava.restaurant.repository.DishRepository;
 /*import ru.topjava.restaurant.repository.RestaurantMenuRepository;
 import ru.topjava.restaurant.repository.RestaurantRepository;
