@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.topjava.restaurant.model.Dish;
 import ru.topjava.restaurant.model.Restaurant;
 import ru.topjava.restaurant.repository.RestaurantRepository;
-import ru.topjava.restaurant.restaurantMenu.RestaurantMenu;
 //import ru.topjava.restaurant.model.Restaurant;
 //import ru.topjava.restaurant.service.RestaurantService;
 
