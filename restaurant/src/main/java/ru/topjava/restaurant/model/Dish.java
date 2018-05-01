@@ -1,10 +1,11 @@
 package ru.topjava.restaurant.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "DISH")
-public class Dish {
+public class Dish implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
