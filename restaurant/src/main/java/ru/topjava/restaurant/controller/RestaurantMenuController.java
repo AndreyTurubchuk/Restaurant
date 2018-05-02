@@ -2,7 +2,9 @@ package ru.topjava.restaurant.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.topjava.restaurant.model.Dish;
@@ -18,7 +20,7 @@ import ru.topjava.restaurant.repository.RestaurantRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping(value = "restaurant/menu")
 public class RestaurantMenuController {
 
@@ -35,30 +37,44 @@ public class RestaurantMenuController {
     RestaurantComplexRepository restaurantComplexRepository;
 
 
-
     @GetMapping(value = "/")
-    public RestaurantMenu restaurantMenus() {
-        Dish dish = new Dish("картошка31", 3.0);
-       // Dish dish2 = new Dish("картошка32", 32.0);
-        dishRepository.save(dish);
-       // dishRepository.save(dish2);
+    public String restaurantMenus(Model model) {
+        model.addAttribute("restaurantMenuList",  restaurantMenuRepository.findAll());
+        return "complexMenu";
+    }
 
-       // List<Dish> list = new ArrayList<>();
-      //  list.add(dish);
-      //  list.add(dish2);
-        Restaurant r = new Restaurant("Paratov");
+    @GetMapping(value = "/complexMenu/{id}") //добавление блюда в меню комплекса
+    public String dishAddByComplex(Model model, @PathVariable long id) {
+        //model.addAttribute("restaurantMenu", restaurantMenuRepository.findRestaurantMenuByRestaurantComplexId(id));
+        model.addAttribute("restaurantMenuList", restaurantMenuRepository.findRestaurantMenuByRestaurantComplexId(id));
+        //model.addAttribute("restaurantMenuList", restaurantMenuRepository.getOne(id));
+        //model.addAttribute("restaurantMenuList", restaurantMenuRepository.findRestaurantMenuByRestaurantMenuId(id));
+        return "complexMenu";
+    }
+
+
+
+    //Dish dish = new Dish("картошка31", 3.0);
+    // Dish dish2 = new Dish("картошка32", 32.0);
+    // dishRepository.save(dish);
+    // dishRepository.save(dish2);
+
+    // List<Dish> list = new ArrayList<>();
+    //  list.add(dish);
+    //  list.add(dish2);
+/*        Restaurant r = new Restaurant("Paratov");
         restaurantRepository.save(r);
         RestaurantComplex rc = new RestaurantComplex(r);
         restaurantComplexRepository.save(rc);
         RestaurantMenu rm = new RestaurantMenu(dish, rc);
-        restaurantMenuRepository.save(rm);
-        //rm.setDish(dish);
-      //  r.addDish(dish);
-      //  r.addDish(dish2);
+        restaurantMenuRepository.save(rm);*/
+    //rm.setDish(dish);
+    //  r.addDish(dish);
+    //  r.addDish(dish2);
 
-        return rm;
+    //return rm;
 
-    } // лист
+//} // лист
 
 
     @GetMapping(value = "/addComplex")
