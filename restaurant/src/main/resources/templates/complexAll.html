@@ -17,7 +17,7 @@
             <tr th:each="complex : ${complexList}">
                 <td>
                     <a th:title="Редактирование"
-                       th:href="@{/restaurant/complex/{id}(id=${complex.id})}"
+                       th:href="@{/restaurant/menu/complexMenu/{id}(id=${complex.id})}"
                        th:text="${complex.id}">
                     </a>
                 </td>
