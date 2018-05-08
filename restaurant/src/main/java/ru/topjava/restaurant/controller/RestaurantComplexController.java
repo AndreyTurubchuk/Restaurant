@@ -6,7 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.topjava.restaurant.model.Restaurant;
+import ru.topjava.restaurant.model.RestaurantComplex;
 import ru.topjava.restaurant.repository.RestaurantComplexRepository;
+import ru.topjava.restaurant.repository.RestaurantRepository;
 
 @Controller
 @RequestMapping(value = "restaurant")
@@ -14,6 +17,9 @@ public class RestaurantComplexController {
 
     @Autowired
     RestaurantComplexRepository restaurantComplexRepository;
+
+    @Autowired
+    RestaurantRepository restaurantRepository;
 
     @GetMapping(value = "/complexes")
     public String complexList(Model model) {
@@ -25,5 +31,15 @@ public class RestaurantComplexController {
     public String complexEdit(Model model, @PathVariable long id) {
         model.addAttribute("complex", restaurantComplexRepository.getOne(id));
         return "complexForm";
+    }
+
+    @GetMapping(value = "/complex/create/{id}") // создание комплекса у ресторана
+    public String complexCreate(Model model, @PathVariable long id) {
+        RestaurantComplex restaurantComplex = new RestaurantComplex();
+        Restaurant restaurant = restaurantRepository.getOne(id);
+        restaurantComplex.setRestaurant(restaurant);
+        restaurantComplexRepository.save(restaurantComplex);
+        model.addAttribute("complexList", restaurantComplexRepository.findRestaurantComplexByRestaurantRestaurantId(id));
+        return "complexAll";
     }
 }
