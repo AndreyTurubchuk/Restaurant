@@ -17,18 +17,19 @@
               <tr th:each="complex : ${complexList}">
                 <td>
                     <a th:title="Редактирование"
-                       th:href="@{/restaurant/menu/complexMenu/{complexId}(complexId=${complex.id})}"
+                       th:href="@{/restaurant/complex/{complexId}/menu(complexId=${complex.id})}"
                        th:text="${complex.id}">
                     </a>
                 </td>
 
                 <td th:text="${complex.restaurant.name}">
                 </td>
-                <a th:href="@{/restaurant/complex/create/{complexId}(complexId=${complex.restaurant.restaurantId})}">
-                Добавить
-                </a>
+
               </tr>
             </tbody>
+            <a th:href="@{/restaurant/${restaurantId}/complex/create/}">
+                Добавить
+            </a>
 
         </table>
     </div>
