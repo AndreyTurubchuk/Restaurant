@@ -27,19 +27,27 @@ public class RestaurantComplexController {
         return "complexAll";
     }
 
-    @GetMapping(value = "/complex/{id}") //редактирование
+/*    @GetMapping(value = "/complex/{id}") //редактирование
     public String complexEdit(Model model, @PathVariable long id) {
         model.addAttribute("complex", restaurantComplexRepository.getOne(id));
         return "complexForm";
+    }*/
+
+    @GetMapping(value = "/{restaurantId}/complex") // получение списка комплексов у ресторана по id ресторана
+    public String complexAll(Model model, @PathVariable long restaurantId) {
+        model.addAttribute("complexList", restaurantComplexRepository.findRestaurantComplexByRestaurantRestaurantId(restaurantId));
+        model.addAttribute("restaurantId" , restaurantId);
+        return "complexAll";
     }
 
-    @GetMapping(value = "/complex/create/{id}") // создание комплекса у ресторана
-    public String complexCreate(Model model, @PathVariable long id) {
+
+    @GetMapping(value = "/{restaurantId}/complex/create") // создание комплекса у ресторана
+    public String complexCreate(Model model, @PathVariable long restaurantId) {
         RestaurantComplex restaurantComplex = new RestaurantComplex();
-        Restaurant restaurant = restaurantRepository.getOne(id);
+        Restaurant restaurant = restaurantRepository.getOne(restaurantId);
         restaurantComplex.setRestaurant(restaurant);
         restaurantComplexRepository.save(restaurantComplex);
-        model.addAttribute("complexList", restaurantComplexRepository.findRestaurantComplexByRestaurantRestaurantId(id));
+        model.addAttribute("complexList", restaurantComplexRepository.findRestaurantComplexByRestaurantRestaurantId(restaurantId));
         return "complexAll";
     }
 }
