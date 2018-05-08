@@ -6,37 +6,53 @@
 <body>
 <div class="container">
     <div class="form-wrapper">
-        <table class="list-table">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>NumberComplex</th>
-                <th>NameDish</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="restaurantMenu : ${restaurantMenuList}">
-                <td th:text="${restaurantMenu.restaurantMenuId}" th:name="id"> </td>
-                <td th:text="${restaurantMenu.restaurantComplex.id}"></td>
-                <td th:text="${restaurantMenu.dish.name}"></td>
+        <form action="#" id="complexMenuForm" th:action="@{/restaurant/menu/complexMenu/dishes/save}" th:object="${restaurantMenu}" method="post">
+            <label class="control-label col-sm-3">Номер комплекса</label>
+            <div class="col-sm-8">
+                <input type="text" th:field="*{restaurantMenuId}" class="form-control"/>
+            </div>
+            <div class="col-sm-8">
+                 <input type="text" th:field="*{restaurantComplex}" class="form-control"/>
+            </div>
+                <table class="list-table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>NumberComplex</th>
+                        <th>NameDish</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="restaurantMenu : ${restaurantMenuList}">
+                        <td th:text="${restaurantMenu.restaurantMenuId}" th:name="id"> </td>
+                        <td th:text="${restaurantMenu.restaurantComplex.id}"></td>
+                        <td th:text="${restaurantMenu.dish.name}"></td>
+                    </tr>
+                    </tbody>
+                </table>
 
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Добавить блюдо в  меню комплекса</label>
+                    <div class="col-sm-8">
+                        <!--<select th:name="dishId" class="form-control">-->
+                        <select th:field="*{dish}" class="form-control">
+                            <option th:each="dish : ${dishList}"
+                                    th:value="${dish.dishId}"
+                                    th:text="${dish.name}">
+                            </option>
+                        </select>
+                    </div>
+                </div>
 
-<!--               <td>
-                    <a th:title="Редактирование"
-                       th:href="@{/restaurant/dishes/{id}(id=${dish.dishId})}"
-                       th:text="${dish.name}">
-                    </a>
-                </td>
-
-                <td th:text="${dish.price}">
-                </td>-->
-                <!--                <td class="del-cell">
-                                    <a class="del-btn" th:href="@{/sokol/department/delete/{id}(id=${department.id})}"></a>
-                                </td>-->
-            </tr>
-            </tbody>
-        </table>
-    </div>
+                <div class="form-group">
+                    <div class="control-label col-sm-3"></div>
+                    <div class="col-sm-8">
+                        <a href="#" onclick="document.forms['complexMenuForm'].submit();" class="btn-save pull-left">SAVE</a>
+                        <a th:href="@{/restaurant/dishes}" class="btn-close pull-right">CANCEL</a>
+                    </div>
+                </div>
+        </form>
+</div>
 </div>
 
 </body>
