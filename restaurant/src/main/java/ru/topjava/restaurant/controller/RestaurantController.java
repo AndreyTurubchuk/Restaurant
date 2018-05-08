@@ -70,11 +70,6 @@ public class RestaurantController {
         return "redirect:/restaurant/restaurants";
     }
 
-    @GetMapping(value = "/complex2/{id}") //редактирование
-    public String complexAll(Model model, @PathVariable long id) {
-        model.addAttribute("complexList", restaurantComplexRepository.findRestaurantComplexByRestaurantRestaurantId(id));
-        return "complexAll";
-    }
 
 
 }
