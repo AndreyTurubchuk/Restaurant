@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "restaurant/menu")
+@RequestMapping(value = "restaurant/complex")
 public class RestaurantMenuController {
 
     @Autowired
@@ -34,13 +34,13 @@ public class RestaurantMenuController {
     RestaurantComplexRepository restaurantComplexRepository;
 
 
-    @GetMapping(value = "/")
+/*    @GetMapping(value = "/")
     public String restaurantMenus(Model model) {
         model.addAttribute("restaurantMenuList", restaurantMenuRepository.findAll());
         return "complexMenu";
-    }
+    }*/
 
-    @GetMapping(value = "/complexMenu/{complexId}") //отображение блюд одного комплекса
+    @GetMapping(value = "/{complexId}/menu") //отображение блюд одного комплекса
     public String dishAddByComplex(Model model, @PathVariable long complexId) {
         model.addAttribute("restaurantMenuList", restaurantMenuRepository.findRestaurantMenuByRestaurantComplexId(complexId));
         model.addAttribute("dishList", dishRepository.findAll());
@@ -50,35 +50,12 @@ public class RestaurantMenuController {
         return "complexMenu";
     }
 
-    @PostMapping("/complexMenu/dishes/save") // запись блюда в меню комплекса
+    @PostMapping("/menu/dish/save") // запись блюда в меню комплекса
     public String dishAddByComplexSaveSubmit(@ModelAttribute RestaurantMenu restaurantMenu) {
         restaurantMenuRepository.save(restaurantMenu);
         long complexId = restaurantMenu.getRestaurantComplex().getId();
-        return "redirect:/restaurant/menu/complexMenu/" + complexId;
+        return "redirect:/restaurant/complex/" + complexId + "/menu";
     }
-
-    //Dish dish = new Dish("картошка31", 3.0);
-    // Dish dish2 = new Dish("картошка32", 32.0);
-    // dishRepository.save(dish);
-    // dishRepository.save(dish2);
-
-    // List<Dish> list = new ArrayList<>();
-    //  list.add(dish);
-    //  list.add(dish2);
-/*        Restaurant r = new Restaurant("Paratov");
-        restaurantRepository.save(r);
-        RestaurantComplex rc = new RestaurantComplex(r);
-        restaurantComplexRepository.save(rc);
-        RestaurantMenu rm = new RestaurantMenu(dish, rc);
-        restaurantMenuRepository.save(rm);*/
-    //rm.setDish(dish);
-    //  r.addDish(dish);
-    //  r.addDish(dish2);
-
-    //return rm;
-
-//} // лист
-
 
     @GetMapping(value = "/addComplex")
     public RestaurantComplex restaurantComplex(Restaurant restaurant) {
