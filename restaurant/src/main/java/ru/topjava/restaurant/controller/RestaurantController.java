@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.topjava.restaurant.model.Dish;
 import ru.topjava.restaurant.model.Restaurant;
+import ru.topjava.restaurant.model.RestaurantComplex;
+import ru.topjava.restaurant.repository.RestaurantComplexRepository;
 import ru.topjava.restaurant.repository.RestaurantRepository;
 //import ru.topjava.restaurant.model.Restaurant;
 //import ru.topjava.restaurant.service.RestaurantService;
@@ -22,6 +24,10 @@ public class RestaurantController {
 
     @Autowired
     RestaurantRepository restaurantRepository;
+
+    @Autowired
+    RestaurantComplexRepository restaurantComplexRepository;
+
 
 /*    @GetMapping(value = "/restaurants")
     public List<Restaurant>  restaurants() {
@@ -56,6 +62,20 @@ public class RestaurantController {
         restaurantRepository.save(restaurant);
         return "redirect:/restaurant/restaurants";
     }
+
+
+    @GetMapping(value = "/restaurant/delete/{id}") // удаление
+    public String delete(@PathVariable("id") long id) {
+        restaurantRepository.delete(id);
+        return "redirect:/restaurant/restaurants";
+    }
+
+    @GetMapping(value = "/complex2/{id}") //редактирование
+    public String complexAll(Model model, @PathVariable long id) {
+        model.addAttribute("complexList", restaurantComplexRepository.findRestaurantComplexByRestaurantRestaurantId(id));
+        return "complexAll";
+    }
+
 
 }
 //rest
