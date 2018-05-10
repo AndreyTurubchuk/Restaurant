@@ -1,8 +1,5 @@
 package ru.topjava.restaurant.model;
 
-
-
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,15 +17,8 @@ public class Restaurant {
     private Long rating;
     //private String rating;
 
-
-
-/*    @OneToMany(mappedBy = "restaurant")
-    private List<RestaurantMenu> restaurantMenus = new ArrayList<>();*/
-
-/*    public Restaurant(String name, String rating) {
-        this.name = name;
-        this.rating = rating;
-    }*/
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<RestaurantComplex> restaurantComplexList;
 
     public Restaurant(String name) {
         this.rating = 0L;
@@ -68,7 +58,15 @@ public class Restaurant {
         this.rating = rating;
     }
 
-/*    public String getRating() {
+    public List<RestaurantComplex> getRestaurantComplexList() {
+        return restaurantComplexList;
+    }
+
+    public void setRestaurantComplexList(List<RestaurantComplex> restaurantComplexList) {
+        this.restaurantComplexList = restaurantComplexList;
+    }
+
+    /*    public String getRating() {
         return rating;
     }
 
