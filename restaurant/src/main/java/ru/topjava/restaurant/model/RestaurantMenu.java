@@ -1,5 +1,8 @@
 package ru.topjava.restaurant.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,12 +16,14 @@ public class RestaurantMenu implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long restaurantMenuId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "DISH_ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Dish dish;
 
     @ManyToOne
     @JoinColumn(name = "COMPLEX_ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private RestaurantComplex restaurantComplex;
 
     //private List<Dish> dishList; // в 1 меню несколько блюд
