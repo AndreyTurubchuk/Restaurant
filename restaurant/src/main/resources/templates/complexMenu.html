@@ -23,18 +23,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="restaurantMenu : ${restaurantMenuList}">
+                      <tr th:each="restaurantMenu : ${restaurantMenuList}">
                         <td th:text="${restaurantMenu.restaurantMenuId}" th:name="id"> </td>
                         <td th:text="${restaurantMenu.restaurantComplex.id}"></td>
                         <td th:text="${restaurantMenu.dish.name}"></td>
-                    </tr>
+                        <td>
+                            <a th:href="@{/restaurant/complex/menu/delete/{restaurantMenuId}(restaurantMenuId=${restaurantMenu.restaurantMenuId})}">
+                                Удалить
+                            </a>
+                        </td>
+                      </tr>
                     </tbody>
                 </table>
 
                 <div class="form-group">
                     <label class="control-label col-sm-3">Добавить блюдо в  меню комплекса</label>
                     <div class="col-sm-8">
-                        <!--<select th:name="dishId" class="form-control">-->
                         <select th:field="*{dish}" class="form-control">
                             <option th:each="dish : ${dishList}"
                                     th:value="${dish.dishId}"
