@@ -33,6 +33,12 @@ public class RestaurantComplexController {
         return "complexForm";
     }*/
 
+    @GetMapping(value = "/complex/delete/{id}") // удаление
+    public String delete(@PathVariable("id") long id) {
+        restaurantComplexRepository.delete(id);
+        return "redirect:/restaurant/restaurants";
+    }
+
     @GetMapping(value = "/{restaurantId}/complex") // получение списка комплексов у ресторана по id ресторана
     public String complexAll(Model model, @PathVariable long restaurantId) {
         model.addAttribute("complexList", restaurantComplexRepository.findRestaurantComplexByRestaurantRestaurantId(restaurantId));
