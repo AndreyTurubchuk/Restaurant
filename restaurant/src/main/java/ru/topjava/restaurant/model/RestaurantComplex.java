@@ -1,7 +1,11 @@
 package ru.topjava.restaurant.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,16 +16,16 @@ public class RestaurantComplex {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "RESTAURANT_ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Restaurant restaurant;
 
-
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurantComplex", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<RestaurantMenu> restaurantMenuList;
 
     public RestaurantComplex() {
     }
-
-
 
     public RestaurantComplex(Restaurant restaurant) {
         this.restaurant = restaurant;
@@ -44,7 +48,13 @@ public class RestaurantComplex {
         this.restaurant = restaurant;
     }
 
+    public List<RestaurantMenu> getRestaurantMenuList() {
+        return restaurantMenuList;
+    }
 
+    public void setRestaurantMenuList(List<RestaurantMenu> restaurantMenuList) {
+        this.restaurantMenuList = restaurantMenuList;
+    }
 }
 /*public class RestaurantComplex {
     //private Map<Restaurant, RestaurantMenu> restaurantComplex; // у одного ресторана несколько комплексов
