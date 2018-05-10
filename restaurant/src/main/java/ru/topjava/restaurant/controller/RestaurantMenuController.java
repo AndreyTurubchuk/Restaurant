@@ -57,6 +57,13 @@ public class RestaurantMenuController {
         return "redirect:/restaurant/complex/" + complexId + "/menu";
     }
 
+    @GetMapping(value = "/menu/delete/{restaurantMenuId}") // удаление блюда из меню комплекса
+    public String delete(@PathVariable("restaurantMenuId") long restaurantMenuId) {
+        restaurantMenuRepository.delete(restaurantMenuId);
+        return "redirect:/restaurant/restaurants";
+    }
+    //menu/dish/delete/{dishId
+
     @GetMapping(value = "/addComplex")
     public RestaurantComplex restaurantComplex(Restaurant restaurant) {
         RestaurantComplex rc = new RestaurantComplex(restaurant);
