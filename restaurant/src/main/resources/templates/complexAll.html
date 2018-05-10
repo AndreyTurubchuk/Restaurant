@@ -21,13 +21,16 @@
                        th:text="${complex.id}">
                     </a>
                 </td>
-
                 <td th:text="${complex.restaurant.name}">
                 </td>
-
+                <td>
+                      <a th:href="@{/restaurant/complex/delete/{complexId}(complexId=${complex.id})}">
+                          Удалить
+                      </a>
+                </td>
               </tr>
             </tbody>
-            <a th:href="@{/restaurant/${restaurantId}/complex/create/}">
+            <a th:href="@{/restaurant/{restaurantId}/complex/create(restaurantId=${restaurantId})}">
                 Добавить
             </a>
 
