@@ -41,4 +41,7 @@ dependencies {
 	compile 'org.postgresql:postgresql:9.4.1212'
 	testCompile 'org.postgresql:postgresql:9.4.1212'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	// https://mvnrepository.com/artifact/org.mockito/mockito-all
+	//testCompile group: 'org.mockito', name: 'mockito-all', version: '1.8.4'
+
 }
