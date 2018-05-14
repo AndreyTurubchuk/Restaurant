@@ -47,6 +47,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@Transactional
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
+/*
 @RunWith(SpringRunner.class)
 @WebMvcTest(RestDishController.class)
 @AutoConfigureMockMvc
@@ -84,7 +85,8 @@ public class DishControllerTest {
     @MockBean
     private DishService dishService;
 
-    @Test
+*/
+/*    @Test
     public void testGet() throws Exception {
         Dish dish = new Dish("Dish1", 100.0);
         Dish dish2 = new Dish("Dish2", 200.0);
@@ -94,7 +96,9 @@ public class DishControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print());
         verify(dishRepository).findAll();
-    }
+    }*//*
+
 }
+*/
 
 
