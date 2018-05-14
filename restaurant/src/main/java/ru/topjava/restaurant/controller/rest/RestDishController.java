@@ -5,7 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.topjava.restaurant.model.Dish;
+
+import ru.topjava.restaurant.model.Restaurant;
+import ru.topjava.restaurant.model.RestaurantMenu;
 import ru.topjava.restaurant.repository.DishRepository;
+import ru.topjava.restaurant.repository.RestaurantMenuRepository;
+import ru.topjava.restaurant.repository.RestaurantRepository;
 import ru.topjava.restaurant.service.DishService;
 
 import java.util.List;
@@ -20,11 +25,33 @@ public class RestDishController {
     private DishRepository dishRepository;
 
     @Autowired
+    private RestaurantRepository restaurantRepository;
+
+    @Autowired
     private DishService dishService;
+
+    @Autowired
+    private RestaurantMenuRepository restaurantMenuRepository;
 
     @GetMapping("/dishes")
     public List<Dish> dishes() {
         return dishRepository.findAll();
+    }
+
+    @GetMapping("/restaurants")
+    public List<Restaurant> restaurants() {
+        return restaurantRepository.findAll();
+    }
+
+    @GetMapping(value = "/menu") //отображение блюд одного ресторана с одним меню
+    public List<RestaurantMenu> menuForm() {
+        // List<RestaurantMenu> restaurantMenu = restaurantMenuRepository.findRestaurantMenuByRestaurantRestaurantId(restaurantId);
+        return restaurantMenuRepository.findAll();
+    }
+
+    @GetMapping(value = "{restaurantId}/menu") //отображение блюд одного ресторана с одним меню
+    public List<RestaurantMenu> menuByRestaurantId(@PathVariable("restaurantId") long id) {
+        return restaurantMenuRepository.findRestaurantMenuByRestaurantRestaurantId(id);
     }
 
     @GetMapping("/dishes/{id}")
@@ -38,9 +65,11 @@ public class RestDishController {
     }
 
     @PutMapping("/dishes/{id}")
-    public void update (@RequestBody Dish dish, @PathVariable("id") long id) {
+    public void update(@RequestBody Dish dish, @PathVariable("id") long id) {
         dishRepository.save(dish);
     }
+
+
 
 
 /*    @PutMapping("/dishes/save")
@@ -56,7 +85,7 @@ public class RestDishController {
     }*/
 
     @PutMapping("/dishes/save")
-    public void update (@RequestBody Dish dish) {
+    public void update(@RequestBody Dish dish) {
         log.info("update {}", dish);
         //  assureIdConsistent(dish, id);
         dishService.update(dish);

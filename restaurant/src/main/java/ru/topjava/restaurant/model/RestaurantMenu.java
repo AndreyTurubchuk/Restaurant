@@ -16,25 +16,24 @@ public class RestaurantMenu implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long restaurantMenuId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    //@ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "DISH_ID")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Dish dish;
 
+    //@ManyToOne(fetch = FetchType.LAZY)
     @ManyToOne
-    @JoinColumn(name = "COMPLEX_ID")
+    @JoinColumn(name = "RESTAURANT_ID")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private RestaurantComplex restaurantComplex;
-
-    //private List<Dish> dishList; // в 1 меню несколько блюд
+    private Restaurant restaurant;
 
     public RestaurantMenu() {
-   //     this.dishList = new ArrayList<>();
     }
 
-    public RestaurantMenu(Dish dish, RestaurantComplex restaurantComplex) {
+    public RestaurantMenu(Dish dish, Restaurant restaurant) {
         this.dish = dish;
-        this.restaurantComplex = restaurantComplex;
+     //   this.restaurant = restaurant;
     }
 
     public long getRestaurantMenuId() {
@@ -45,14 +44,6 @@ public class RestaurantMenu implements Serializable {
         this.restaurantMenuId = restaurantMenuId;
     }
 
-    public RestaurantComplex getRestaurantComplex() {
-        return restaurantComplex;
-    }
-
-    public void setRestaurantComplex(RestaurantComplex restaurantComplex) {
-        this.restaurantComplex = restaurantComplex;
-    }
-
     public Dish getDish() {
         return dish;
     }
@@ -61,47 +52,13 @@ public class RestaurantMenu implements Serializable {
         this.dish = dish;
     }
 
-    public RestaurantMenu(Dish dish) {
-        this.dish = dish;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    @Override
-    public String toString() {
-        return "RestaurantMenu{" +
-                "restaurantMenuId=" + restaurantMenuId +
-                ", dish=" + dish +
-                '}';
-    }
-/*    public List<Dish> getDishList() {
-        return dishList;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    public void setDishList(List<Dish> dishList) {
-        this.dishList = dishList;
-    }*/
 
-    /*    public RestaurantMenu(List<Dish> dishList) {
-        this.dishList = dishList;
-    }*/
-
-
-
-/*    public List<Dish> getDishList() {
-        return dishList;
-    }
-
-    public void setDishList(List<Dish> dishList) {
-        this.dishList = dishList;
-    }*/
-
-/*    public void addDish(Dish dish) {
-        dishList.add(dish);
-    }*/
-
-/*    public void show() {
-        for (Dish dish : dishList
-                ) {
-            System.out.println(dish.toString());
-        }
-    }*/
 }

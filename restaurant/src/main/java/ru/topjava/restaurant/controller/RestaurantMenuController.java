@@ -4,21 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.topjava.restaurant.model.Dish;
 
 import ru.topjava.restaurant.model.Restaurant;
-import ru.topjava.restaurant.model.RestaurantComplex;
 import ru.topjava.restaurant.model.RestaurantMenu;
 import ru.topjava.restaurant.repository.DishRepository;
-import ru.topjava.restaurant.repository.RestaurantComplexRepository;
 import ru.topjava.restaurant.repository.RestaurantMenuRepository;
 import ru.topjava.restaurant.repository.RestaurantRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "restaurant/complex")
+@RequestMapping(value = "restaurant")
 public class RestaurantMenuController {
 
     @Autowired
@@ -30,27 +26,26 @@ public class RestaurantMenuController {
     @Autowired
     RestaurantMenuRepository restaurantMenuRepository;
 
-    @Autowired
-    RestaurantComplexRepository restaurantComplexRepository;
-
-
-/*    @GetMapping(value = "/")
+   /*    @GetMapping(value = "/")
     public String restaurantMenus(Model model) {
         model.addAttribute("restaurantMenuList", restaurantMenuRepository.findAll());
         return "complexMenu";
     }*/
+/*
+    @GetMapping(value = "/{restaurantId}/menu") //отображение блюд одного ресторана с одним меню
+    public List<RestaurantMenu> menuForm(Model model, @PathVariable long restaurantId) {
+        //model.addAttribute("restaurantMenuList", restaurantMenuRepository.findRestaurantMenuByRestaurantRestaurantId(restaurantId));
+        //model.addAttribute("dishList", dishRepository.findAll());
+        //RestaurantMenu restaurantMenu = new RestaurantMenu();
+       // restaurantMenu.setRestaurantComplex(restaurantComplexRepository.getOne(complexId));
+        //model.addAttribute("restaurantMenu", restaurantMenu);
+        //return "restaurantMenu";
+        List<RestaurantMenu> restaurantMenu = restaurantMenuRepository.findRestaurantMenuByRestaurantRestaurantId(restaurantId);
+        return restaurantMenuRepository.findRestaurantMenuByRestaurantRestaurantId(restaurantId);
 
-    @GetMapping(value = "/{complexId}/menu") //отображение блюд одного комплекса
-    public String dishAddByComplex(Model model, @PathVariable long complexId) {
-        model.addAttribute("restaurantMenuList", restaurantMenuRepository.findRestaurantMenuByRestaurantComplexId(complexId));
-        model.addAttribute("dishList", dishRepository.findAll());
-        RestaurantMenu restaurantMenu = new RestaurantMenu();
-        restaurantMenu.setRestaurantComplex(restaurantComplexRepository.getOne(complexId));
-        model.addAttribute("restaurantMenu", restaurantMenu);
-        return "complexMenu";
-    }
+    }*/
 
-    @PostMapping("/menu/dish/save") // запись блюда в меню комплекса
+/*    @PostMapping("/menu/dish/save") // запись блюда в меню комплекса
     public String dishAddByComplexSaveSubmit(@ModelAttribute RestaurantMenu restaurantMenu) {
         restaurantMenuRepository.save(restaurantMenu);
         long complexId = restaurantMenu.getRestaurantComplex().getId();
@@ -69,7 +64,7 @@ public class RestaurantMenuController {
         RestaurantComplex rc = new RestaurantComplex(restaurant);
         restaurantComplexRepository.save(rc);
         return rc;
-    }
+    }*/
 
 }
 
@@ -120,3 +115,33 @@ public class RestaurantMenuController {
 
 }
 */
+
+/*    @GetMapping(value = "/complex/{id}") //редактирование
+    public String complexEdit(Model model, @PathVariable long id) {
+        model.addAttribute("complex", restaurantComplexRepository.getOne(id));
+        return "complexForm";
+    }*/
+
+   /* @GetMapping(value = "/complex/delete/{id}") // удаление
+    public String delete(@PathVariable("id") long id) {
+        restaurantComplexRepository.delete(id);
+        return "redirect:/restaurant/restaurants";
+    }
+
+    @GetMapping(value = "/{restaurantId}/complex") // получение списка комплексов у ресторана по id ресторана
+    public String complexAll(Model model, @PathVariable long restaurantId) {
+        model.addAttribute("complexList", restaurantComplexRepository.findRestaurantComplexByRestaurantRestaurantId(restaurantId));
+        model.addAttribute("restaurantId" , restaurantId);
+        return "complexAll";
+    }
+
+
+    @GetMapping(value = "/{restaurantId}/complex/create") // создание комплекса у ресторана
+    public String complexCreate(Model model, @PathVariable long restaurantId) {
+        RestaurantComplex restaurantComplex = new RestaurantComplex();
+        Restaurant restaurant = restaurantRepository.getOne(restaurantId);
+        restaurantComplex.setRestaurant(restaurant);
+        restaurantComplexRepository.save(restaurantComplex);
+        model.addAttribute("complexList", restaurantComplexRepository.findRestaurantComplexByRestaurantRestaurantId(restaurantId));
+        return "complexAll";
+    }*/

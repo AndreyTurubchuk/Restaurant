@@ -2,14 +2,10 @@ package ru.topjava.restaurant.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.topjava.restaurant.model.Dish;
 import ru.topjava.restaurant.model.Restaurant;
-import ru.topjava.restaurant.model.RestaurantComplex;
-import ru.topjava.restaurant.repository.RestaurantComplexRepository;
 import ru.topjava.restaurant.repository.RestaurantRepository;
 //import ru.topjava.restaurant.model.Restaurant;
 //import ru.topjava.restaurant.service.RestaurantService;
@@ -24,9 +20,6 @@ public class RestaurantController {
 
     @Autowired
     RestaurantRepository restaurantRepository;
-
-    @Autowired
-    RestaurantComplexRepository restaurantComplexRepository;
 
 
 /*    @GetMapping(value = "/restaurants")

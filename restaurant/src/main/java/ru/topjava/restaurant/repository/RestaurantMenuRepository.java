@@ -3,7 +3,6 @@ package ru.topjava.restaurant.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.topjava.restaurant.model.RestaurantComplex;
 import ru.topjava.restaurant.model.RestaurantMenu;
 
 import java.util.List;
@@ -11,7 +10,9 @@ import java.util.List;
 
 @Repository
 public interface RestaurantMenuRepository extends JpaRepository<RestaurantMenu, Long> {
-    List<RestaurantMenu> findRestaurantMenuByRestaurantComplexId(Long id);
+   // List<RestaurantMenu> findRestaurantMenuByRestaurantComplexId(Long id);
+  List<RestaurantMenu> findRestaurantMenuByRestaurantRestaurantId(Long restaurantMenuId);
     //RestaurantMenu findRestaurantMenusByRestaurantComplexId(Long id);
-    RestaurantMenu findRestaurantMenuByRestaurantMenuId(Long restaurantMenuId);
+  //  RestaurantMenu findRestaurantMenuByRestaurantMenuId(Long restaurantMenuId);
+    //List<RestaurantComplex> findRestaurantComplexByRestaurantRestaurantId(Long complexId);
 }
