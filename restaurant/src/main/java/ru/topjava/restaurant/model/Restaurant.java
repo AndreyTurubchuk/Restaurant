@@ -1,12 +1,13 @@
 package ru.topjava.restaurant.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "RESTAURANT")
-public class Restaurant {
+public class Restaurant implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,8 +18,11 @@ public class Restaurant {
     private Long rating;
     //private String rating;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<RestaurantComplex> restaurantComplexList;
+   // @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = CascadeType.REMOVE, orphanRemoval = true)
+   // private List<RestaurantComplex> restaurantComplexList;
+
+/*    @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<RestaurantMenu> restaurantMenuList;*/
 
     public Restaurant(String name) {
         this.rating = 0L;
@@ -58,15 +62,28 @@ public class Restaurant {
         this.rating = rating;
     }
 
-    public List<RestaurantComplex> getRestaurantComplexList() {
-        return restaurantComplexList;
+    public void setRating(Long rating) {
+        this.rating = rating;
     }
 
-    public void setRestaurantComplexList(List<RestaurantComplex> restaurantComplexList) {
-        this.restaurantComplexList = restaurantComplexList;
+/*    public List<RestaurantMenu> getRestaurantMenuList() {
+        return restaurantMenuList;
     }
 
-    /*    public String getRating() {
+    public void setRestaurantMenuList(List<RestaurantMenu> restaurantMenuList) {
+        this.restaurantMenuList = restaurantMenuList;
+    }*/
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "restaurantId=" + restaurantId +
+                ", name='" + name + '\'' +
+                ", rating=" + rating +
+                '}';
+    }
+
+/*    public String getRating() {
         return rating;
     }
 
