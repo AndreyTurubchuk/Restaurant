@@ -9,8 +9,6 @@ public interface DishService {
 
     void create(Dish dish);
 
-    void update2(Dish dish, long dishId);
-
     void update(Dish dish);
 
     void delete(long dishId);
