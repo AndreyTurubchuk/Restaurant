@@ -26,6 +26,26 @@ public class RestaurantMenuController {
     @Autowired
     RestaurantMenuRepository restaurantMenuRepository;
 
+/*    @GetMapping(value = "/{restaurantId}/menu") //отображение блюд одного ресторана с одним меню
+    public String menuByRestaurantId(Model model, @PathVariable("restaurantId") long id) {
+        model.addAttribute("restaurantMenuList", restaurantMenuRepository.findRestaurantMenuByRestaurantRestaurantId(id));
+        model.addAttribute("dishList", dishRepository.findAll());
+        model.addAttribute("restaurantId2", id);
+
+        //  model.addAttribute("restaurantMenu", id);
+        //return "restaurantMenuAll";
+        return "mytest";
+    }*/
+
+
+    @PostMapping("/menu/dish/save") // запись блюда в меню комплекса
+    public String dishAddByComplexSaveSubmit(@ModelAttribute RestaurantMenu restaurantMenu) {
+/*        restaurantMenuRepository.save(restaurantMenu);
+        long complexId = restaurantMenu.getRestaurantComplex().getId();
+        return "redirect:/restaurant/complex/" + complexId + "/menu";*/
+        return null;
+    }
+
    /*    @GetMapping(value = "/")
     public String restaurantMenus(Model model) {
         model.addAttribute("restaurantMenuList", restaurantMenuRepository.findAll());
