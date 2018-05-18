@@ -25,11 +25,6 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public void update2(Dish dish, long dishId) {
-
-    }
-
-    @Override
     public void update(Dish dish) {
         dishRepository.save(dish);
     }
