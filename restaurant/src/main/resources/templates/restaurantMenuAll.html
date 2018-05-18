@@ -6,37 +6,57 @@
 <body>
 <div class="container">
     <div class="form-wrapper">
-        <form action="#" id="complexMenu" th:action="@{/restaurant/complex/menu/dish/save}" th:object="${restaurantMenu}" method="post">
-            <label class="control-label col-sm-3">Номер комплекса</label>
-            <div class="col-sm-8">
-                <input type="text" th:field="*{restaurantMenuId}" class="form-control"/>
-            </div>
-            <div class="col-sm-8">
-                 <input type="text" th:field="*{restaurantComplex}" class="form-control"/>
-            </div>
-                <table class="list-table">
+        <!--<form action="#" id="complexMenu" th:action="@{/restaurant/complex/menu/dish/save}" th:object="${restaurantMenu}" method="post">-->
+            <form action="#" id="complexMenu" th:action="@{/restaurant/menu/dish/save}" th:object="${restaurantMenu}" method="post">
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3">number restaurant</label>
+                    <div class="col-sm-8">
+                        <!--<input type="text" th:field="*{restaurantId}" class="form-control"/>-->
+                        <input type="text" th:text="${restaurantId2}" class="form-control"/>
+                    </div>
+                </div>
+                 <table class="list-table">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>NumberComplex</th>
                         <th>NameDish</th>
                     </tr>
                     </thead>
                     <tbody>
                       <tr th:each="restaurantMenu : ${restaurantMenuList}">
                         <td th:text="${restaurantMenu.restaurantMenuId}" th:name="id"> </td>
-                        <td th:text="${restaurantMenu.restaurantComplex.id}"></td>
                         <td th:text="${restaurantMenu.dish.name}"></td>
-                        <td>
+                      </tr>
+<!--                        <td>
                             <a th:href="@{/restaurant/complex/menu/delete/{restaurantMenuId}(restaurantMenuId=${restaurantMenu.restaurantMenuId})}">
                                 Удалить
                             </a>
-                        </td>
-                      </tr>
+                        </td>-->
+
                     </tbody>
                 </table>
 
-                <div class="form-group">
+                <table class="list-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>NameDish</th>
+                            <th>NamePrice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr th:each="dish : ${dishList}">
+                                <td th:text="${dish.dishId}"> </td>
+                                <td th:text="${dish.name}"> </td>
+                                <td th:text="${dish.price}"></td>
+                            </tr>
+                    </tbody>
+                </table>
+
+
+
+<!--                <div class="form-group">
                     <label class="control-label col-sm-3">Добавить блюдо в  меню комплекса</label>
                     <div class="col-sm-8">
                         <select th:field="*{dish}" class="form-control">
@@ -46,7 +66,7 @@
                             </option>
                         </select>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="form-group">
                     <div class="control-label col-sm-3"></div>
