@@ -10,8 +10,32 @@ import java.util.List;
 
 @Service
 public class DishServiceImpl implements DishService {
+    @Override
+    public List<Dish> getAll() {
+        return null;
+    }
 
-    @Autowired
+    @Override
+    public void create(Dish dish) {
+
+    }
+
+    @Override
+    public void update(Dish dish) {
+
+    }
+
+    @Override
+    public void delete(long dishId) {
+
+    }
+
+    @Override
+    public Dish getById(long id) {
+        return null;
+    }
+
+/*    @Autowired
     private DishRepository dishRepository;
 
     @Override
@@ -29,13 +53,13 @@ public class DishServiceImpl implements DishService {
         dishRepository.save(dish);
     }
 
-/*    @Override
+*//*    @Override
     public void update(Dish dishDetails, long dishId) {
         Dish dish = dishRepository.getOne(dishId);
         dish.setName(dishDetails.getName());
         dish.setPrice(dishDetails.getPrice());
         dishRepository.save(dish);
-    }*/
+    }*//*
 
     @Override
     public void delete(long dishId) {
@@ -44,8 +68,8 @@ public class DishServiceImpl implements DishService {
 
     @Override
     public Dish getById(long id) {
-        return dishRepository.findByDishId(id);
-    }
+        return dishRepository.findById(id);
+    }*/
 
 }
 
