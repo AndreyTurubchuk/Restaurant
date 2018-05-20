@@ -10,10 +10,8 @@ import java.util.List;
 
 @Repository
 public interface RestaurantMenuRepository extends JpaRepository<RestaurantMenu, Long> {
-   // List<RestaurantMenu> findRestaurantMenuByRestaurantComplexId(Long id);
-  List<RestaurantMenu> findRestaurantMenuByRestaurantRestaurantId(Long restaurantMenuId);
+    List<RestaurantMenu> findRestaurantMenuByRestaurantRestaurantId(Long restaurantMenuId);
+
     RestaurantMenu findRestaurantMenuByRestaurantMenuId(Long menuId);
-    //RestaurantMenu findRestaurantMenusByRestaurantComplexId(Long id);
-  //  RestaurantMenu findRestaurantMenuByRestaurantMenuId(Long restaurantMenuId);
-    //List<RestaurantComplex> findRestaurantComplexByRestaurantRestaurantId(Long complexId);
+
 }
