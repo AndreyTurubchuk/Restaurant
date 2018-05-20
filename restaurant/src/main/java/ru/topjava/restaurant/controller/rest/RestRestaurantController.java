@@ -41,13 +41,10 @@ public class RestRestaurantController {
     @PutMapping("/restaurants/{id}")
     public void update(@RequestBody Restaurant restaurant, @PathVariable("id") long id) {
         log.info("Updating Restaurant with id {}", id);
-        Restaurant currentRestaurant = restaurantRepository.findRestaurantByRestaurantId(id);
-        if (currentRestaurant == null) {
+        if (restaurantRepository.findRestaurantByRestaurantId(id) == null) {
             log.error("Unable to update. Restaurant with id {} not found. ", id);
         } else {
-            currentRestaurant.setName(restaurant.getName());
-            currentRestaurant.setRating(0);
-            restaurantRepository.save(currentRestaurant);
+            restaurantRepository.save(restaurant);
         }
     }
 

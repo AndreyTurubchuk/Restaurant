@@ -36,19 +36,10 @@ public class RestRestaurantMenuController {
         restaurantMenuRepository.save(restaurantMenu);
     }
 
-/*    //запись нового блюда в меню ресторана, обновление блюда в меню ресторана
-    @PutMapping("/restaurant/{restaurantId}/menu/dishes/{dishId}")
-    public void menuByRestaurantId(@RequestBody RestaurantMenu restaurantMenu,
-                                   @PathVariable("restaurantId") long restaurantId,
-                                   @PathVariable("dishId") long dishId) {
-        restaurantMenuRepository.save(restaurantMenu);
-    }*/
-
-    // удаление блюда из меню ресторана
-    @DeleteMapping("/restaurant/{restaurantId}/menu/{menuId}") // удаление
-    public void delete(@PathVariable("restaurantId") long restaurantId,
-                       @PathVariable("menuId") long menuId) {
-        restaurantMenuRepository.delete(menuId);
+    // delete a Menu
+    @DeleteMapping("/menu/{id}") // удаление
+    public void delete(@PathVariable("id") long id) {
+        restaurantMenuRepository.delete(id);
     }
 
     //отображение блюд одного ресторана с одним меню

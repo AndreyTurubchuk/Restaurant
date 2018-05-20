@@ -5,10 +5,6 @@ import ru.topjava.restaurant.model.Restaurant;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     Restaurant findRestaurantByRestaurantId(Long id);
-
- //   Restaurant findRestaurantByRating(Long raiting);
-
-
 }
 
 

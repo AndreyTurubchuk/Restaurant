@@ -14,6 +14,10 @@ import ru.topjava.restaurant.repository.RestaurantMenuRepository;
 import ru.topjava.restaurant.repository.RestaurantRepository;
 import ru.topjava.restaurant.service.DishService;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -31,10 +35,10 @@ public class RestDishController {
         return dishRepository.findAll();
     }
 
-    //выбор блюда по id
+   //выбор блюда по id
     @GetMapping("/dishes/{id}")
     public Dish get(@PathVariable("id") long id) {
-        return dishRepository.findByDishId(id);
+        return dishRepository.findById(id);
     }
 
     // create a Dish
@@ -44,17 +48,13 @@ public class RestDishController {
         dishRepository.save(dish);
     }
 
-    // update a Dish
     @PutMapping("/dishes/{id}")
     public void update(@RequestBody Dish dish, @PathVariable("id") long id) {
         log.info("Updating Dish with id {}", id);
-        Dish currentDish = dishRepository.findByDishId(id);
-        if (currentDish == null) {
+        if (dishRepository.findById(id) == null) {
             log.error("Unable to update. Dish with id {} not found. ", id);
         } else {
-            currentDish.setName(dish.getName());
-            currentDish.setPrice(dish.getPrice());
-            dishRepository.save(currentDish);
+            dishRepository.save(dish);
         }
     }
 
@@ -63,10 +63,6 @@ public class RestDishController {
     public void delete(@PathVariable("id") long id) {
         dishRepository.delete(id);
     }
-
-
-
-
 
 
 }
