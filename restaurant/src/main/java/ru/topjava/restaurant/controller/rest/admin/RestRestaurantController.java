@@ -1,17 +1,16 @@
-package ru.topjava.restaurant.controller.rest;
+package ru.topjava.restaurant.controller.rest.admin;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.topjava.restaurant.model.Dish;
 import ru.topjava.restaurant.model.Restaurant;
 import ru.topjava.restaurant.repository.RestaurantRepository;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/restaurant/rest/admin/api/v1")
+@RequestMapping(value = "/admin/rest/api/v1")
 public class RestRestaurantController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
