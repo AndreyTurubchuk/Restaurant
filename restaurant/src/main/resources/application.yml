@@ -11,5 +11,10 @@ spring:
       url: jdbc:postgresql://localhost:5432/restaurant
       username: root
       password: root
-
-
+server:
+   port: 8080
+   contextPath: /restaurant
+security:
+   basic:
+      enabled: true
+   sessions: stateless
