@@ -1,22 +1,22 @@
 package ru.topjava.restaurant.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-/*@Entity
-@Table(name = "DEPARTMENTS")
-@Getter
-@Setter
-@EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
-@AllArgsConstructor*/
-
-
 @Entity
 @Table(name = "DISH")
+@Getter
+@Setter
+@Data
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class Dish implements Serializable {
 
     @Id
@@ -30,7 +30,7 @@ public class Dish implements Serializable {
     //@Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime createdDate;
 
-    public Dish() {
+    /*public Dish() {
     }
 
     public Dish(String name, Double price, LocalDateTime createdDate) {
@@ -79,5 +79,5 @@ public class Dish implements Serializable {
                 ", price=" + price +
                 ", createdDate=" + createdDate +
                 '}';
-    }
+    }*/
 }
