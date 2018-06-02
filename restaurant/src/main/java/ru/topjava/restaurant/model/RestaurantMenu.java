@@ -1,15 +1,20 @@
 package ru.topjava.restaurant.model;
 
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "RESTAURANT_MENU")
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class RestaurantMenu implements Serializable {
 
     @Id
@@ -28,7 +33,7 @@ public class RestaurantMenu implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Restaurant restaurant;
 
-    public RestaurantMenu() {
+  /*  public RestaurantMenu() {
     }
 
     public RestaurantMenu(Dish dish, Restaurant restaurant) {
@@ -59,6 +64,6 @@ public class RestaurantMenu implements Serializable {
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
-
+*/
 
 }
