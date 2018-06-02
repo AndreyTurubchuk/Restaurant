@@ -1,4 +1,4 @@
-package ru.topjava.restaurant.controller.rest;
+package ru.topjava.restaurant.controller.rest.admin;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ import ru.topjava.restaurant.repository.RestaurantMenuRepository;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/restaurant/rest/admin/api/v1")
+@RequestMapping(value = "/admin/rest/api/v1")
 public class RestRestaurantMenuController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
