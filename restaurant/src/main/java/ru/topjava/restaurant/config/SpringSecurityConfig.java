@@ -15,7 +15,6 @@ import ru.topjava.restaurant.service.UserService;
 
 @Configuration
 @EnableWebSecurity
-@ComponentScan("ru.topjava.restaurant")
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     // @Autowired
@@ -46,17 +45,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     UserService userService;
 
-    @Bean
+/*    @Bean
     public PasswordEncoder bcryptPasswordEncoder(){
         return new BCryptPasswordEncoder();
-    }
+    }*/
 
     // create two users, admin and user
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
- /*       auth
-                .userDetailsService(userService)
-                .passwordEncoder(bcryptPasswordEncoder());*/
+        //auth
+               // .userDetailsService(userService);
+              //  .passwordEncoder(bcryptPasswordEncoder());
         auth.inMemoryAuthentication()
                 .withUser("user").password("password").roles("USER")
                 .and()
