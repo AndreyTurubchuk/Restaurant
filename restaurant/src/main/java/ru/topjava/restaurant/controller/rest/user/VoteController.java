@@ -50,56 +50,77 @@ public class VoteController {
         return userName;
     }
 
+    @GetMapping("/getTopVote")
+    public VoteHistory getTopVote() {
+        VoteHistory voteHistory = voteHistoryRepository.findFirstByUsernameOrderByIdDesc("user");
+        return voteHistory;
+    }
+
+
+    @GetMapping("/getVote")
+    public String getVote() {
+        List<VoteHistory> voteHistories = voteHistoryRepository.findVoteHistoriesByUsername("user");
+        for (VoteHistory voteHistory : voteHistories
+                ) {
+            long currentRaiting = voteHistory.getRestaurant().getRating();
+            voteHistory.getRestaurant().setRating(currentRaiting + 1);
+        }
+        voteHistoryRepository.save(voteHistories);
+        return "OK";
+        //return voteHistoryRepository.findVoteHistoriesByUsername("user");
+    }
 
 
     //голосование за ресторан по id
-    @GetMapping("/restaurants/{restaurantId}/increase")
-    // public String get(@PathVariable("restaurantId") long restaurantId,
-    //                  @PathVariable("userId") long userId) {
-    public String get(@PathVariable("restaurantId") long restaurantId) {
-        log.info("Vote user with restaurant {}", restaurantId);
-        //    LocalDateTime nowDay = LocalDateTime.now();
-        LocalTime nowTime = LocalTime.now();
+    @GetMapping("/restaurants/{id}/increase")
+    public String get(@PathVariable("id") long id) {
+        log.info("Vote user with restaurant {}", id);
+        String result;
+        Restaurant restaurant = restaurantRepository.findRestaurantByRestaurantId(id);
+        LocalDateTime startTime = LocalDate.now().atTime(LocalTime.MIDNIGHT);
+        LocalDateTime endTime = LocalDate.now().atTime(LocalTime.MAX);
+
         LocalTime startTimeDay = LocalTime.MIN;
         LocalTime endTimeDay = LocalTime.MAX;
+        LocalTime voteEndTime = LocalTime.of(11, 0, 0);
+        LocalTime current = LocalTime.now();
 
-        LocalTime voiteEndTime = LocalTime.of(11, 0, 0);
-        //LocalTime endTime2 = LocalTime.MAX;
-
-        User user3 = new User();
-        // user3.setEmail("ivan@rambler.ru");
-
-        VoteHistory voteHistory = new VoteHistory();
-        Restaurant restaurant = restaurantRepository.findRestaurantByRestaurantId(restaurantId);
-        voteHistory.setRestaurant(restaurant);
-        voteHistory.setUser(user3);
-/*        voteHistory.setUser(user);
-        voteHistoryRepository.save(voteHistory);*/
-/*        if (DateTimeUtil.isBetween(nowDay, startTimeDay, endTimeDay)) { // если есть
-            return "OK";
+        if (restaurant == null) {
+            log.error("Vote is impossible. Restaurant with id {} not found. ", id);
+            return "Vote is impossible. Restaurant not found";
+        }
+        if (DateTimeUtil.isBetween(LocalTime.now(), voteEndTime, endTimeDay)) {
+            result = "Голосование закрыто. Голосование возможно только с 00-00 до 11-00";
         } else {
-            return
-        }*/
+            SecurityContext context = SecurityContextHolder.getContext();
+            String userName = context.getAuthentication().getName();
 
-            /*if (DateTimeUtil.isBetween(now, startTime2, endTime2)) {
-            return "Vote is already finished. Vote is possible till 11-00";
-            *//*Restaurant currentRestaurant = restaurantRepository.findRestaurantByRestaurantId(id);
-            if (currentRestaurant == null) {
-                log.error("Unable to voice. Restaurant with id {} not found. ", id);
-                return "Error";
-            } else {
-                long currentRaiting = currentRestaurant.getRating();
-                currentRaiting = currentRaiting + 1;
-                currentRestaurant.setRating(currentRaiting);
-                restaurantRepository.save(currentRestaurant);
-                return "ОК";
-            }*//*
-        } else {
-            List<VoteHistory> voteHistories =  voteHistoryRepository.findAll();
-        }*/
-        return "Time";
+            // уменьшение голоса у предыдущего ресторана
+            VoteHistory voteHistoryLast = voteHistoryRepository.findFirstByUsernameOrderByIdDesc(userName);
+            if (voteHistoryLast != null) {
+                long currentRaitingLast = voteHistoryLast.getRestaurant().getRating() - 1;
+                Restaurant restaurantLast = voteHistoryLast.getRestaurant();
+                restaurantLast.setRating(currentRaitingLast);
+                restaurantRepository.save(restaurantLast);
+            }
+
+            // увеличение голоса у текущего ресторана
+            VoteHistory voteHistory = new VoteHistory();
+            voteHistory.setRestaurant(restaurant);
+            voteHistory.setUsername(userName);
+            voteHistory.setDateTimeVote(LocalDateTime.now());
+            voteHistoryRepository.save(voteHistory);
+            long currentRaiting = restaurant.getRating() + 1;
+            restaurant.setRating(currentRaiting);
+            restaurantRepository.save(restaurant);
+            result = "OK";
+        }
+        return result;
     }
 
+    private static void restaurantSave(Restaurant restaurant) {
+
+    }
 
     //добавление блюда на сегодня
     @GetMapping("/dishAddToday")
@@ -123,11 +144,8 @@ public class VoteController {
     }
 }
 
-/*        List<Dish> dishesToday = new ArrayList<>();
-        for (Dish dish : dishes
-                ) {
-            if (DateTimeUtil.isBetween(dish.getCreatedDate(), startTime, endTime)) {
-                dishesToday.add(dish);
-            }
 
-        }*/
+/*            LocalTime nowTime = LocalTime.now();
+            LocalTime startTimeDay = LocalTime.MIN;
+            LocalTime endTimeDay = LocalTime.MAX;
+            LocalTime voiteEndTime = LocalTime.of(11, 0, 0);*/

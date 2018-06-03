@@ -22,10 +22,13 @@ public class VoteHistory implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @ManyToOne
+/*    @ManyToOne
     @JoinColumn(name = "USER_ID")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private User user;
+    private User user;*/
+
+    @Column(name = "USER_NAME")
+    private String username;
 
     @ManyToOne
     @JoinColumn(name = "RESTAURANT_ID")
