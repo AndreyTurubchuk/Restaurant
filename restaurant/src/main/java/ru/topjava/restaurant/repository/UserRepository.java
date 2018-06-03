@@ -8,5 +8,6 @@ import javax.validation.constraints.NotNull;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    //User findByUsername(@NotNull String username);
     User findByUsername(@NotNull String username);
 }
