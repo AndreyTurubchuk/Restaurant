@@ -17,12 +17,9 @@ import ru.topjava.restaurant.service.UserService;
 @EnableWebSecurity
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    // @Autowired
-    // private AccessDeniedHandler accessDeniedHandler;
-
     // roles admin allow to access /admin/**
     // roles user allow to access /user/**
-    // custom 403 access denied handler
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -34,12 +31,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
-//                .formLogin().loginPage("/login").permitAll()
                 .and()
                 .logout()
                 .permitAll()
                 .and();
-        //.exceptionHandling().accessDeniedHandler(accessDeniedHandler);
     }
 
     @Autowired
@@ -54,8 +49,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         //auth
-               // .userDetailsService(userService);
-              //  .passwordEncoder(bcryptPasswordEncoder());
+        // .userDetailsService(userService);
+        //  .passwordEncoder(bcryptPasswordEncoder());
         auth.inMemoryAuthentication()
                 .withUser("user").password("password").roles("USER")
                 .and()
