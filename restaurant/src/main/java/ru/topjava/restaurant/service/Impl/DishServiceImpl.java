@@ -32,10 +32,17 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public List<Dish> getDishesForRestaurantToday(long id) {
-        List<Dish> dishes = dishRepository.findAll();
+    public List<Dish> getDishesTodayForRestaurant(Long id) {
+        return null;
+    }
+
+/*    @Override
+    public List<Dish> getDishesTodayForRestaurant (Long id) {
+        List<Dish> dishes = dishRepository.getDishesForRestaurant(id);
         return dishes.stream()
                 .filter(dish -> DateTimeUtil.isBetween(dish.getCreatedDate(), startTime, endTime))
                 .collect(toList());
-    }
+    }*/
+
+
 }
