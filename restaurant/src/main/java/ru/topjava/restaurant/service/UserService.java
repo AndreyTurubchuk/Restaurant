@@ -20,12 +20,12 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-/*    @PostConstruct
+    @PostConstruct
     public void init() {
         if (!(userRepository.findByUsername("username") == null)) {
             userRepository.save(User.builder()
-                    .username("username12")
-                    .password("password12")
+                    .username("user")
+                    .password("password")
                     .authorities(Collections.singletonList(Role.USER))
                     .accountNonExpired(true)
                     .accountNonLocked(true)
@@ -34,23 +34,9 @@ public class UserService implements UserDetailsService {
                     .build()
             );
         }
-    }*/
-
-/*    public UserDetails loadUserByUsername(@NotNull String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username);
-    }*/
-
-    public UserDetails loadUserByUsername(@NotNull String username) throws UsernameNotFoundException {
-        //return userRepository.findByUsername(username);
-        return User.builder()
-                .username("username12")
-                .password("password12")
-                .authorities(Collections.singletonList(Role.USER))
-                .accountNonExpired(true)
-                .accountNonLocked(true)
-                .credentialsNonExpired(true)
-                .enabled(true)
-                .build();
     }
 
+    public UserDetails loadUserByUsername(@NotNull String username) throws UsernameNotFoundException {
+        return userRepository.findByUsername(username);
+    }
 }
