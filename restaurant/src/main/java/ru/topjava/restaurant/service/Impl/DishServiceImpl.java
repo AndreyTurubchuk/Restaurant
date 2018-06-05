@@ -1,76 +1,41 @@
 package ru.topjava.restaurant.service.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import ru.topjava.restaurant.model.Dish;
 import ru.topjava.restaurant.repository.DishRepository;
 import ru.topjava.restaurant.service.DishService;
+import ru.topjava.restaurant.util.DateTimeUtil;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
-@Service
+import static java.util.stream.Collectors.toList;
+
+@Repository
 public class DishServiceImpl implements DishService {
-    @Override
-    public List<Dish> getAll() {
-        return null;
-    }
 
-    @Override
-    public void create(Dish dish) {
+    private LocalDateTime startTime = LocalDate.now().atTime(LocalTime.MIDNIGHT);
+    private LocalDateTime endTime = LocalDate.now().atTime(LocalTime.MAX);
 
-    }
-
-    @Override
-    public void update(Dish dish) {
-
-    }
-
-    @Override
-    public void delete(long dishId) {
-
-    }
-
-    @Override
-    public Dish getById(long id) {
-        return null;
-    }
-
-/*    @Autowired
+    @Autowired
     private DishRepository dishRepository;
 
     @Override
-    public List<Dish> getAll() {
-        return dishRepository.findAll();
+    public List<Dish> getDishesToday() {
+        List<Dish> dishes = dishRepository.findAll();
+        return dishes.stream()
+                .filter(dish -> DateTimeUtil.isBetween(dish.getCreatedDate(), startTime, endTime))
+                .collect(toList());
     }
 
     @Override
-    public void create(Dish dish) {
-        dishRepository.save(dish);
+    public List<Dish> getDishesForRestaurantToday(long id) {
+        List<Dish> dishes = dishRepository.findAll();
+        return dishes.stream()
+                .filter(dish -> DateTimeUtil.isBetween(dish.getCreatedDate(), startTime, endTime))
+                .collect(toList());
     }
-
-    @Override
-    public void update(Dish dish) {
-        dishRepository.save(dish);
-    }
-
-*//*    @Override
-    public void update(Dish dishDetails, long dishId) {
-        Dish dish = dishRepository.getOne(dishId);
-        dish.setName(dishDetails.getName());
-        dish.setPrice(dishDetails.getPrice());
-        dishRepository.save(dish);
-    }*//*
-
-    @Override
-    public void delete(long dishId) {
-        dishRepository.delete(dishId);
-    }
-
-    @Override
-    public Dish getById(long id) {
-        return dishRepository.findById(id);
-    }*/
-
 }
-
-
