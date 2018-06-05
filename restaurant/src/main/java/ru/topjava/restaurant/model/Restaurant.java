@@ -21,14 +21,5 @@ public class Restaurant implements Serializable {
     private String name;
 
     private Long rating;
-
-    @Override
-    public String toString() {
-        return "Restaurant{" +
-                "restaurantId=" + restaurantId +
-                ", name='" + name + '\'' +
-                ", rating=" + rating +
-                '}';
-    }
 }
 
