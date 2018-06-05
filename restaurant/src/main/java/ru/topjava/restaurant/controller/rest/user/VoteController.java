@@ -73,7 +73,7 @@ public class VoteController {
     @GetMapping("/restaurants/{id}/dishesToday")
     public List<Dish> getDishesTodayForRestaurant(@PathVariable("id") long id) {
         log.info("list of dishes for today for restaurant {}", id);
-        return dishService.getDishesForRestaurantToday(id);
+        return dishService.getDishesTodayForRestaurant(id);
     }
 
     //добавление блюда на сегодня  тест
@@ -86,17 +86,15 @@ public class VoteController {
         dishRepository.save(dish);
     }
 
-    @GetMapping("/getuser")
+/*    @GetMapping("/getuser")
     public String user() {
         SecurityContext context = SecurityContextHolder.getContext();
-        String userName = context.getAuthentication().getName();
-        return userName;
+        return context.getAuthentication().getName();
     }
 
     @GetMapping("/getTopVote")
     public VoteHistory getTopVote() {
-        VoteHistory voteHistory = voteHistoryRepository.findFirstByUsernameOrderByIdDesc("user");
-        return voteHistory;
+        return  voteHistoryRepository.findFirstByUsernameOrderByIdDesc("user");
     }
 
     @GetMapping("/getVote")
@@ -109,7 +107,6 @@ public class VoteController {
         }
         voteHistoryRepository.save(voteHistories);
         return "OK";
-        //return voteHistoryRepository.findVoteHistoriesByUsername("user");
-    }
+    }*/
 }
 
