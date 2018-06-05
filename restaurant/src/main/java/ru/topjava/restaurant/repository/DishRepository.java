@@ -16,7 +16,4 @@ import java.util.List;
 public interface DishRepository extends JpaRepository<Dish, Long> {
     Dish findById(Long id);
 
-    @SuppressWarnings("JpaQlInspection")
-    @Query("SELECT d from Dish d  WHERE d.createdDate BETWEEN :startDate AND :endDate ORDER BY d.createdDate DESC")
-    List<Dish> getBetween(@Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 }
