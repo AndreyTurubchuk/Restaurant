@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Builder
 @Entity
 @Table(name = "VOTE_HISTORY")
 @Getter
@@ -21,11 +22,6 @@ public class VoteHistory implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-/*    @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private User user;*/
 
     @Column(name = "USER_NAME")
     private String username;
