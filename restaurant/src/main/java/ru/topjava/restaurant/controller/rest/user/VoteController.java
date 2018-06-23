@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ru.topjava.restaurant.model.Dish;
-import ru.topjava.restaurant.model.Restaurant;
-import ru.topjava.restaurant.model.User;
-import ru.topjava.restaurant.model.VoteHistory;
+import ru.topjava.restaurant.model.*;
 import ru.topjava.restaurant.repository.DishRepository;
+import ru.topjava.restaurant.repository.RestaurantMenuRepository;
 import ru.topjava.restaurant.repository.RestaurantRepository;
 import ru.topjava.restaurant.repository.VoteHistoryRepository;
 import ru.topjava.restaurant.service.DishService;
@@ -38,6 +36,12 @@ public class VoteController {
 
     @Autowired
     private DishRepository dishRepository;
+
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+
+    @Autowired
+    private RestaurantMenuRepository restaurantMenuRepository;
 
     @Autowired
     private VoteHistoryRepository voteHistoryRepository;
@@ -71,16 +75,32 @@ public class VoteController {
 
     //список блюд на сегодня для пользователя у конкретного ресторана
     @GetMapping("/restaurants/{id}/dishesToday")
-    public List<Dish> getDishesTodayForRestaurant(@PathVariable("id") long id) {
+    public List<RestaurantMenu> getDishesTodayForRestaurant(@PathVariable("id") long id) {
         log.info("list of dishes for today for restaurant {}", id);
         return dishService.getDishesTodayForRestaurant(id);
+    }
+
+    @GetMapping("/restaurants/{id}/dish/{dishId}/createDishTodayByRestaurant")
+    public String createDishTodayForRestaurant(@PathVariable("id") long id,
+                                                   @PathVariable("dishId") long dishId) {
+        log.info("list of dishes for today for restaurant {}", id);
+        // return dishRepository.getDishesForRestaurant();
+        RestaurantMenu rm = new RestaurantMenu();
+        rm.setCreatedDate(LocalDateTime.now());
+        Restaurant restaurant = restaurantRepository.getOne(id);
+        Dish dish = dishRepository.getOne(dishId);
+        rm.setDish(dish);
+        rm.setRestaurant(restaurant);
+        restaurantMenuRepository.save(rm);
+        return "Rest Menu create";
+
     }
 
     //добавление блюда на сегодня  тест
     @GetMapping("/dishAddToday")
     public void addDishToday() {
         Dish dish = new Dish();
-        dish.setCreatedDate(LocalDateTime.now());
+      //  dish.setCreatedDate(LocalDateTime.now());
         dish.setName("milk");
         dish.setPrice(200.0);
         dishRepository.save(dish);
