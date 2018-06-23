@@ -2,6 +2,7 @@ package ru.topjava.restaurant.service;
 
 import org.springframework.stereotype.Service;
 import ru.topjava.restaurant.model.Dish;
+import ru.topjava.restaurant.model.RestaurantMenu;
 
 import java.util.List;
 
@@ -9,6 +10,6 @@ import java.util.List;
 public interface DishService {
     List<Dish> getDishesToday(); // list of dishes for today
 
-    List<Dish> getDishesTodayForRestaurant (Long id); // list of dishes for today for Restaurant
+    List<RestaurantMenu> getDishesTodayForRestaurant (Long id); // list of dishes for today for Restaurant
 
 }
