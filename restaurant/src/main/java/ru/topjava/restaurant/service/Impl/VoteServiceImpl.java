@@ -27,7 +27,7 @@ public class VoteServiceImpl implements VoteService {
     private LocalDateTime startTime = LocalDate.now().atTime(LocalTime.MIDNIGHT);
     private LocalDateTime endTime = LocalDate.now().atTime(LocalTime.MAX);
     private LocalTime endTimeDay = LocalTime.MAX;
-    private LocalTime voteEndTime = LocalTime.of(18, 0, 0);
+    private LocalTime voteEndTime = LocalTime.of(23, 0, 0);
     private static final String VOTE_CLOSED = "Vote is closed. Vote is possible only 00-00 до 11-00";
     private static final String VOTE_SUCCESS = "vote for restaurant has taken successfully";
 
@@ -55,9 +55,9 @@ public class VoteServiceImpl implements VoteService {
             // надо выяснить, голосовал ли пользователь в этот день !isVoteToday()
             VoteHistory voteHistoryLast = voteHistoryRepository.findFirstByUsernameOrderByIdDesc(userName); //последнее голосование
             if ((voteHistoryLast != null) & (!isVoteToday())) { // если голосовал сегодня и это последнее голосование, то уменьшаем.
-                long currentRgeLast = voteHistoryLast.getRestaurant().getRating() - 1;
+                long currentRgLast = voteHistoryLast.getRestaurant().getRating() - 1;
                 Restaurant restaurantLast = voteHistoryLast.getRestaurant();
-                restaurantLast.setRating(currentRgeLast);
+                restaurantLast.setRating(currentRgLast);
                 restaurantRepository.save(restaurantLast);
             }
             voteHistoryRepository.save(VoteHistory.builder()
