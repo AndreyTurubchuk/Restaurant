@@ -28,7 +28,7 @@ public class VoteServiceImpl implements VoteService {
     private LocalDateTime endTime = LocalDate.now().atTime(LocalTime.MAX);
     private LocalTime endTimeDay = LocalTime.MAX;
     private LocalTime voteEndTime = LocalTime.of(23, 0, 0);
-    private static final String VOTE_CLOSED = "Vote is closed. Vote is possible only 00-00 до 11-00";
+    private static final String VOTE_CLOSED = "Vote is closed. Vote is possible only 00-00 to 11-00";
     private static final String VOTE_SUCCESS = "vote for restaurant has taken successfully";
 
     @Autowired
