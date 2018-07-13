@@ -8,6 +8,6 @@ public class ControllerDefault {
 
     @GetMapping("/")
     public String login() {
-        return "Добро пожаловать";
+        return "Welcome";
     }
 }
