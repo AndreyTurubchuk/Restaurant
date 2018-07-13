@@ -26,11 +26,16 @@ public class RestDishController {
     //выбор блюда по id
     @GetMapping("/dishes/{id}")
     public Dish get(@PathVariable("id") long id) {
-        return dishRepository.findById(id);
+        if (dishRepository.findById(id) == null) {
+            log.error("Dish with id {} not found. ", id);
+            return null;
+        } else {
+            return dishRepository.findById(id);
+        }
     }
 
     // create a Dish
-    @PostMapping("/dishes/")
+    @PostMapping("/dishes")
     public void create(@RequestBody Dish dish) {
         log.info("Creating Dish : {}", dish);
         dishRepository.save(dish);
