@@ -8,9 +8,6 @@ import java.util.Collections;
 
 public class DishServiceTest {
 
-    @Autowired
-    private DishService service;
-
 
     @Test
     public void update() throws Exception {
