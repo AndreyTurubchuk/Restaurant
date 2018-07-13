@@ -1,3 +1,5 @@
+//http://qaru.site/questions/18433/difference-between-fetchtype-lazy-and-eager-in-java-persistence-api
+
 package ru.topjava.restaurant.model;
 
 import lombok.*;
@@ -14,7 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @Data
 @EqualsAndHashCode
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 
 public class RestaurantMenu implements Serializable {
@@ -26,7 +28,11 @@ public class RestaurantMenu implements Serializable {
     @Column(name = "CREATED_DATE")
     private LocalDateTime createdDate;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    public RestaurantMenu() {
+        this.createdDate = LocalDateTime.now();
+    }
+
+    @ManyToOne
     @JoinColumn(name = "DISH_ID")
     //@OnDelete(action = OnDeleteAction.CASCADE)
     private Dish dish;
