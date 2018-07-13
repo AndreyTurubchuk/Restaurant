@@ -3,8 +3,6 @@ package ru.topjava.restaurant.controller.rest.user;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,19 +13,10 @@ import ru.topjava.restaurant.repository.DishRepository;
 import ru.topjava.restaurant.repository.RestaurantMenuRepository;
 import ru.topjava.restaurant.repository.RestaurantRepository;
 import ru.topjava.restaurant.repository.VoteHistoryRepository;
-import ru.topjava.restaurant.service.DishService;
+import ru.topjava.restaurant.service.RestaurantMenuService;
 import ru.topjava.restaurant.service.VoteService;
-import ru.topjava.restaurant.util.DateTimeUtil;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping(value = "/user/rest/api/v1")
@@ -44,10 +33,10 @@ public class VoteController {
     private RestaurantMenuRepository restaurantMenuRepository;
 
     @Autowired
-    private VoteHistoryRepository voteHistoryRepository;
+    private RestaurantMenuService restaurantMenuService;
 
     @Autowired
-    private DishService dishService;
+    private VoteHistoryRepository voteHistoryRepository;
 
     @Autowired
     private VoteService voteService;
@@ -63,48 +52,15 @@ public class VoteController {
     public boolean isVoteToday() {
         log.info("whether there was a vote today");
         return voteService.isVoteToday();
-
     }
 
-    //список блюд на сегодня для пользователя если ресторан единственный и у него всего одно меню
-    @GetMapping("/dishesToday")
-    public List<Dish> getDishesToday() {
-        log.info("list of dishes for today");
-        return dishService.getDishesToday();
+    //отображение меню (список блюд) ресторана на сегодня у конкретного ресторана
+    @GetMapping(value = "/restaurant/{id}/menuToday")
+    public List<RestaurantMenu> menuTodayByRestaurantId(@PathVariable("id") long id) {
+        return restaurantMenuService.getMenuTodayByRestaurant(id);
     }
 
-    //список блюд на сегодня для пользователя у конкретного ресторана
-    @GetMapping("/restaurants/{id}/dishesToday")
-    public List<RestaurantMenu> getDishesTodayForRestaurant(@PathVariable("id") long id) {
-        log.info("list of dishes for today for restaurant {}", id);
-        return dishService.getDishesTodayForRestaurant(id);
-    }
 
-    @GetMapping("/restaurants/{id}/dish/{dishId}/createDishTodayByRestaurant")
-    public String createDishTodayForRestaurant(@PathVariable("id") long id,
-                                                   @PathVariable("dishId") long dishId) {
-        log.info("list of dishes for today for restaurant {}", id);
-        // return dishRepository.getDishesForRestaurant();
-        RestaurantMenu rm = new RestaurantMenu();
-        rm.setCreatedDate(LocalDateTime.now());
-        Restaurant restaurant = restaurantRepository.getOne(id);
-        Dish dish = dishRepository.getOne(dishId);
-        rm.setDish(dish);
-        rm.setRestaurant(restaurant);
-        restaurantMenuRepository.save(rm);
-        return "Rest Menu create";
-
-    }
-
-    //добавление блюда на сегодня  тест
-    @GetMapping("/dishAddToday")
-    public void addDishToday() {
-        Dish dish = new Dish();
-      //  dish.setCreatedDate(LocalDateTime.now());
-        dish.setName("milk");
-        dish.setPrice(200.0);
-        dishRepository.save(dish);
-    }
 
 /*    @GetMapping("/getuser")
     public String user() {
