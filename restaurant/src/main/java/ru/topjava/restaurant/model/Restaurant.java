@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @EqualsAndHashCode
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 public class Restaurant implements Serializable {
 
@@ -21,5 +21,9 @@ public class Restaurant implements Serializable {
     private String name;
 
     private Long rating;
+
+    public Restaurant() {
+        this.rating = 0L;
+    }
 }
 
