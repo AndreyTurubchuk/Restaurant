@@ -59,30 +59,5 @@ public class VoteController {
     public List<RestaurantMenu> menuTodayByRestaurantId(@PathVariable("id") long id) {
         return restaurantMenuService.getMenuTodayByRestaurant(id);
     }
-
-
-
-/*    @GetMapping("/getuser")
-    public String user() {
-        SecurityContext context = SecurityContextHolder.getContext();
-        return context.getAuthentication().getName();
-    }
-
-    @GetMapping("/getTopVote")
-    public VoteHistory getTopVote() {
-        return  voteHistoryRepository.findFirstByUsernameOrderByIdDesc("user");
-    }
-
-    @GetMapping("/getVote")
-    public String getVote() {
-        List<VoteHistory> voteHistories = voteHistoryRepository.findVoteHistoriesByUsername("user");
-        for (VoteHistory voteHistory : voteHistories
-                ) {
-            long currentRaiting = voteHistory.getRestaurant().getRating();
-            voteHistory.getRestaurant().setRating(currentRaiting + 1);
-        }
-        voteHistoryRepository.save(voteHistories);
-        return "OK";
-    }*/
 }
 
