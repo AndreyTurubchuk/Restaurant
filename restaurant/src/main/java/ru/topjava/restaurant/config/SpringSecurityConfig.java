@@ -1,3 +1,8 @@
+//Spring boot security login form using CURL
+//http://www.baeldung.com/securing-a-restful-web-service-with-spring-security
+//http://scalebean.blogspot.com/2013/07/test-spring-security-protected-web-app.html
+//http://www.baeldung.com/securing-a-restful-web-service-with-spring-security
+
 package ru.topjava.restaurant.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
