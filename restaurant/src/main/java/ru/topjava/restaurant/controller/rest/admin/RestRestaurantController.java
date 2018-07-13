@@ -30,7 +30,7 @@ public class RestRestaurantController {
     }
 
     // create a Restaurant
-    @PostMapping("/restaurants/")
+    @PostMapping("/restaurants")
     public void create(@RequestBody Restaurant restaurant) {
         log.info("Creating Restaurant : {}", restaurant);
         restaurantRepository.save(restaurant);
