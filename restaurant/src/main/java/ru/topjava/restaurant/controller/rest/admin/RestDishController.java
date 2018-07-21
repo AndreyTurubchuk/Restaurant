@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.topjava.restaurant.model.Dish;
 import ru.topjava.restaurant.repository.DishRepository;
-
 import java.util.List;
 
 @RestController
