@@ -61,11 +61,12 @@ curl -X GET -b cookies.txt http://localhost:8080/restaurant/admin/rest/api/v1/me
 
 3.3. Добавить пустое меню  (без привязки к ресторану и без блюда) 
 curl -H "Content-Type: application/json" -X POST -d {} -b cookies.txt http://localhost:8080/restaurant/admin/rest/api/v1/menu
+
 3.4. Добавить пустое меню  с указанием ресторана (без блюда) 
 curl -H "Content-Type: application/json" -X POST -d {\"restaurant\":{\"restaurantId\":\"1\",\"name\":\"Moscow\",\"rating\":\"10\"}} -b cookies.txt http://localhost:8080/restaurant/admin/rest/api/v1/menu
+
 3.5. Добавить блюдо 279 в меню  ресторана 2 (POST)
 curl -H "Content-Type: application/json" -X POST -d {\"dish\":{\"id\":\"279\",\"name\":\"FishSoup\",\"price\":\"300.0\"},\"restaurant\":{\"restaurantId\":\"2\",\"name\":\"sara\",\"rating\":\"0\"}} -b cookies.txt http://localhost:8080/restaurant/admin/rest/api/v1/menu
-
 curl -H "Content-Type: application/json" -X POST -d {\"dish\":{\"id\":\"279\"},\"restaurant\":{\"restaurantId\":\"2\"}} -b cookies.txt http://localhost:8080/restaurant/admin/rest/api/v1/menu
 
 3.6. Добавить блюдо 254 в меню  ресторана 3 (GET)
@@ -88,7 +89,7 @@ curl -X GET -b cookies.txt http://localhost:8080/restaurant/admin/rest/api/v1/vo
 Запросы user
 
 1. Голосование за ресторан, где пользователь желает пообедать (если пользователь голосует повторно в тот же день с 0:00 до 11:00, то рейтинг голосования предыдущего ресторана уменьшается на единицу)
-curl -X GET -b cookies.txt  http://localhost:8080/restaurant/user/rest/api/v1/restaurants/3/increase
+curl -X GET -b cookies.txt  http://localhost:8080/restaurant/user/rest/api/v1/restaurants/3/vote
 
 2. Список блюд на сегодня ресторана 1
 curl -X GET -b cookies.txt  http://localhost:8080/restaurant/user/rest/api/v1/restaurant/1/menuToday
