@@ -11,8 +11,6 @@ import ru.topjava.restaurant.repository.DishRepository;
 import ru.topjava.restaurant.repository.RestaurantMenuRepository;
 import ru.topjava.restaurant.repository.RestaurantRepository;
 import ru.topjava.restaurant.service.RestaurantMenuService;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -62,7 +60,6 @@ public class RestRestaurantMenuController {
         }
     }
 
-
     // delete a Menu
     @DeleteMapping("/menu/{id}") // удаление
     public void delete(@PathVariable("id") long id) {
@@ -96,7 +93,5 @@ public class RestRestaurantMenuController {
         rm.setRestaurant(restaurant);
         restaurantMenuRepository.save(rm);
         return "add dish " + dish.getId() + " in menu of restaurant " + restaurant.getRestaurantId() + " successfully";
-
     }
-
 }
