@@ -52,5 +52,4 @@ public class RestRestaurantController {
     public void delete(@PathVariable("id") long id) {
         restaurantRepository.delete(id);
     }
-
 }
