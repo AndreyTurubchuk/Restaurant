@@ -24,25 +24,13 @@ public class VoteController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private DishRepository dishRepository;
-
-    @Autowired
-    private RestaurantRepository restaurantRepository;
-
-    @Autowired
-    private RestaurantMenuRepository restaurantMenuRepository;
-
-    @Autowired
     private RestaurantMenuService restaurantMenuService;
-
-    @Autowired
-    private VoteHistoryRepository voteHistoryRepository;
 
     @Autowired
     private VoteService voteService;
 
     //голосование за ресторан по id
-    @GetMapping("/restaurants/{id}/increase")
+    @GetMapping("/restaurants/{id}/vote")
     public String get(@PathVariable("id") long id) {
         log.info("Vote user for restaurant {}", id);
         return voteService.voteForRestaurant(id);
